@@ -38,18 +38,19 @@
 			font-size: 18px;
 			position: absolute;
 			right: 15px;
-			top: 12px;
+			top: 17px;
 		}
 		#wpns_loading_search {
-		    @include border-radius(30px, 30px, 30px, 30px); 
+		    @include border-radius(30px, 30px, 30px, 30px);		
 		    position: absolute;
-		    right: 3px;
-		    top: 2px;
+		    right: 6px;
+		    top: 6px;
 		}
 		#wpns_search_input {
+		    @include border-radius(30px, 30px, 30px, 30px);		
 		    border: 1px solid #ccc;
 		    background-color: #F0F0F0;
-		    @include border-radius(30px, 30px, 30px, 30px);
+		    padding: 15px;
 		}
 		#wpns_search_input::-moz-placeholder { @include place-holder; }
 		#wpns_search_input:-moz-placeholder { @include place-holder; }
@@ -74,10 +75,10 @@
 	    /* Lead 1.1 */
 	    .wpns_results_list {
 	    	margin: 0;
-	    	list-style: none;
 
 	    	/* Lead 1.1.1 */
 	    	li {
+	    		list-style: none;
 
 	    		/* Lead 1.1.1.1 */
 	    		i { padding-right: 5px; }
