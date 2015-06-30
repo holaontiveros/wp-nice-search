@@ -45,10 +45,16 @@ If you have any questions or issues, please send me an email to  duyngha@gmail.c
 
 == Changelog ==
 
+= 1.0.1 =
+Fixed no keyword keyup event issue and select all current keyword keyup event issue.
+
 = 1.0.0 =
 Publish plugin
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Fixed no keyword keyup event issue and select all current keyword keyup event issue.
 
 = 1.0.0 =
 Publish plugin
