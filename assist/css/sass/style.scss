@@ -1,0 +1,95 @@
+/* CSS3 mixin */
+@mixin box-shadow($lr, $tb, $blur, $size, $color) {
+    box-shadow: $lr $tb $blur $size $color;
+    -moz-box-shadow: $lr $tb $blur $size $color;
+    -webkit-box-shadow: $lr $tb $blur $size $color;
+    -o-box-shadow: $lr $tb $blur $size $color;
+}
+@mixin border-radius($tl, $tr, $br, $bl) {
+    border-radius: $tl $tr $br $bl;
+    -moz-border-radius: $tl $tr $br $bl;
+    -webkit-border-radius: $tl $tr $br $bl;
+    -o-border-radius: $tl $tr $br $bl;
+}
+
+
+/* Individual mixin */
+@mixin results-box-fix($border_color, $top) {
+    border-color: transparent transparent $border_color;
+    border-style: solid;
+    border-width: 12px;
+    content: "";
+    height: 0;
+    left: 40px;
+    position: absolute;
+    top: $top;
+    width: 0;	
+}
+@mixin place-holder { font-size: 13px; color: #ccc; }
+
+/* Trunk 0 */
+#wpns-search-wrap {
+
+	position: relative;
+
+	/* Lead 1 - Form */
+	#wpns_search_form {
+		#wpns_search_icon {
+			font-size: 18px;
+			position: absolute;
+			right: 15px;
+			top: 12px;
+		}
+		#wpns_loading_search {
+		    @include border-radius(30px, 30px, 30px, 30px); 
+		    position: absolute;
+		    right: 3px;
+		    top: 2px;
+		}
+		#wpns_search_input {
+		    border: 1px solid #ccc;
+		    background-color: #F0F0F0;
+		    @include border-radius(30px, 30px, 30px, 30px);
+		}
+		#wpns_search_input::-moz-placeholder { @include place-holder; }
+		#wpns_search_input:-moz-placeholder { @include place-holder; }
+		#wpns_search_input::-webkit-input-placeholder { @include place-holder; }
+		#wpns_search_input:-ms-input-placeholder { @include place-holder; }
+	}
+
+	/* Lead 1 */
+	#wpns_results_box {
+	    @include border-radius(5px, 5px, 5px, 5px);
+	    @include box-shadow(0, 0, 10px, -3px, #ccc);
+	    background-color: #fff;
+	    border: 1px solid #ccc;
+	    margin-top: 10px;
+	    padding: 20px;
+	    position: absolute;
+	    z-index: 1;
+	    font-size: 13px;
+	    top: 60px;
+	    width: 100%;
+
+	    /* Lead 1.1 */
+	    .wpns_results_list {
+	    	margin: 0;
+	    	list-style: none;
+
+	    	/* Lead 1.1.1 */
+	    	li {
+
+	    		/* Lead 1.1.1.1 */
+	    		i { padding-right: 5px; }
+	    		a { text-decoration: none; border: 0; }
+	    	}
+	    }
+	}
+
+	/* Lead 1 */
+	#wpns_results_box::before { @include results-box-fix(#ccc, -25px); }
+
+	/* Lead 1 */
+	#wpns_results_box::after { @include results-box-fix(#fff, -24px); }
+
+}
