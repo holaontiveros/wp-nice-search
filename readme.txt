@@ -46,7 +46,8 @@ If you have any questions or issues, please send me an email to  duyngha@gmail.c
 == Changelog ==
 
 = 1.0.1 =
-Fixed no keyword keyup event issue and select all current keyword keyup event issue.
+* Fixed no keyword keyup event issue and select all current keyword keyup event issue.
+* Fixed style for results box and search icon
 
 = 1.0.0 =
 Publish plugin
