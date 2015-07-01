@@ -6,5 +6,7 @@
 			<img style="display: none;" id="wpns_loading_search" src="<?php echo WPNS_URL . 'assets/images/loading_2.gif'; ?>" />
 		</div>
 	</form>
-	<div id="wpns_results_box" style="display: none;"></div>
+	<div id="wpns_results_box" style="display: none;">
+		<h4>Search results: </h4>
+	</div>
 </div>
