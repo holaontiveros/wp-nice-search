@@ -25,7 +25,7 @@
     top: $top;
     width: 0;	
 }
-@mixin place-holder { font-size: 13px; color: #ccc; }
+@mixin place-holder { font-size: 16px; color: #ccc; }
 
 /* Trunk 0 */
 #wpns-search-wrap {
@@ -38,19 +38,20 @@
 			font-size: 18px;
 			position: absolute;
 			right: 15px;
-			top: 17px;
+			top: 15px;
 		}
 		#wpns_loading_search {
 		    @include border-radius(30px, 30px, 30px, 30px);		
 		    position: absolute;
-		    right: 6px;
-		    top: 6px;
+		    right: 5px;
+		    top: 5px;
 		}
 		#wpns_search_input {
 		    @include border-radius(30px, 30px, 30px, 30px);		
 		    border: 1px solid #ccc;
 		    background-color: #F0F0F0;
 		    padding: 15px;
+		    height: 50px;
 		}
 		#wpns_search_input::-moz-placeholder { @include place-holder; }
 		#wpns_search_input:-moz-placeholder { @include place-holder; }
