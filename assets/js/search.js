@@ -32,7 +32,7 @@ jQuery(document).ready(function($){
 					});
 					compare_key = keyword;
 
-		    }, 1000 );
+		    }, 300 );
 	    }
 	    
 		return false;
