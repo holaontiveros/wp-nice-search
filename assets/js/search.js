@@ -1,3 +1,9 @@
+/**
+ * Get keyword from search form and send it to backend.
+ * Once quite it'll display a list of results search.
+ * 
+ */
+
 jQuery(document).ready(function($){
 	var $ = jQuery;
 
