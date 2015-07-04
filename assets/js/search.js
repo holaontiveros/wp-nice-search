@@ -15,7 +15,6 @@ jQuery(document).ready(function($){
 	$('#wpns_search_input').keyup(function(){
 
 		result_box.hide();
-		$('.wpns_results_list').remove();
 
 		var keyword = $(this).val();
 
@@ -32,6 +31,7 @@ jQuery(document).ready(function($){
 						keyword : keyword,
 					};
 					$.post(wpns_ajax_url.ajaxurl, data, function(response){
+						$('.wpns_results_list').remove();
 						loading.hide();
 						search_icon.show();
 						result_box.append(response).slideDown(300);
