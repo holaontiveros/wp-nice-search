@@ -24,7 +24,7 @@ class WPNS_SEARCH_DATA {
 	 */
 	public function wpns_register_script() {
 
-		wp_enqueue_script( 'wpns_ajax_search', WPNS_URL . 'assets/js/search.js', array('jquery'), '', true );
+		wp_enqueue_script( 'wpns_ajax_search', WPNS_URL . 'assist/js/search.js', array('jquery'), '', true );
 
 		$protocol = isset( $_SERVER['HTTPS']) ? 'https://' : 'http://';
 
