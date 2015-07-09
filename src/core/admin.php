@@ -95,7 +95,7 @@ class WPNS_Admin {
 	 * Draw the section header group 1
 	 */
 	public function wpns_section_1() {
-		echo '<h4>Global settings</h4>';
+		echo '<h3>Global settings</h3>';
 	}
 
 	/**
@@ -137,7 +137,7 @@ class WPNS_Admin {
 	 * Draw the section header group 2
 	 */
 	public function wpns_section_2() {
-		echo '<h4>Form Design</h4>';
+		echo '<h3>Form Design</h3>';
 	}
 
 	/**
