@@ -92,10 +92,34 @@
 	    	/* Lead 3.1 */
 	    	li {
 	    		list-style: none;
+	    		margin-bottom: 5px;
 
 	    		/* Lead 4.1 */
 	    		i { padding-right: 5px; }
 	    		a { text-decoration: none; border: 0; vertical-align: middle; }
+	    		img { 
+	    			width: 30px; 
+	    			height: 30px; 
+	    			border: 1px solid #ccc;
+	    			@include border-radius(3px, 3px, 3px, 3px);
+	    		}
+	    		.wpns-items-pre {
+	    			display: inline-block;
+	    			height: 30px;
+	    		}
+	    		.list-item-box {
+	    			display: inline-block;
+	    			vertical-align: middle;
+	    			padding-left: 10px;
+
+	    			.wpns-meta {
+	    				i {
+		    				.wpns-cate {
+		    					.comma:last-child { display: none; }
+		    				}
+	    				}
+	    			}
+	    		}
 	    	}
 	    }
 	}
