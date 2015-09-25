@@ -96,6 +96,8 @@ class WPNS_Admin {
 
 		add_settings_section( 'wpns_group_2', '', array( &$this, 'wpns_section_2'), $this->menu_slug );
 		add_settings_field( 'wpns_text', 'Placeholder Text', array( &$this, 'wpns_setting_text' ), $this->menu_slug, 'wpns_group_2' );
+
+		add_settings_section( 'wpns_group_3', '', array( &$this, 'wpns_section_3'), $this->menu_slug );
 	}
 
 	/**
@@ -175,6 +177,13 @@ class WPNS_Admin {
 			<br>
 		</fieldset>
 		<?php
+	}
+
+	/**
+	 * Draw the section header group 2
+	 */
+	public function wpns_section_3() {
+		echo '<p>* Use this shortcode in content of the page or post or custom post type: <code>[wpns_search_form]</code></p>';
 	}
 
 	/**
