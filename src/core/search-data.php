@@ -1,7 +1,10 @@
 <?php
 /**
  * Register script for ajax script and handle request search ajax
+ * 
+ * @todo create hook for except arguments
  * @package wpns
+ * @since 1.0.0
  * @author Duy Nguyen
  */
 class WPNS_SEARCH_DATA {
@@ -40,9 +43,31 @@ class WPNS_SEARCH_DATA {
 	public function wpns_search_data() {
 		global $wpdb;
 		$settings = get_option( 'wpns_options' );
+
+		$list_all_posts_types = get_post_types( array(
+			'_builtin' => false,
+		) );
+
+		$list_except = array(
+			'product_variation',
+			'shop_order',
+			'shop_order_refund',
+			'shop_coupon',
+			'shop_webhook',
+			'_pods_pod',
+			'_pods_field',
+		);
+
+		//var_dump($list_select_post_type);exit();
 		
 		if ( $settings['wpns_in_all'] == 'on' || ( $settings['wpns_in_post'] == 'on' && $settings['wpns_in_page'] == 'on' && $settings['wpns_in_custom_post_type'] == 'on' )) {
-			$t = "post_type NOT IN ('revision', '_pods_pod', 'attachment', 'acf-field', 'acf-field-group', 'nav_menu_item')";
+
+			array_unshift( $list_all_posts_types, 'page' );
+			array_unshift( $list_all_posts_types, 'post' );
+			$list_select_post_type = array_diff( $list_all_posts_types, $list_except );
+			$list_select_post_type_str = implode( '","', $list_select_post_type );
+			$t = 'post_type IN ("' . $list_select_post_type_str .'")';
+			//$t = "post_type NOT IN ('revision', '_pods_pod', 'attachment', 'acf-field', 'acf-field-group', 'nav_menu_item')";
 		}
 
 		if ( $settings['wpns_in_post'] == 'on' && $settings['wpns_in_page'] == null && $settings['wpns_in_custom_post_type'] == null ) {
@@ -54,7 +79,11 @@ class WPNS_SEARCH_DATA {
 		}
 
 		if ( $settings['wpns_in_post'] == null && $settings['wpns_in_page'] == null && $settings['wpns_in_custom_post_type'] == 'on' ) {
-			$t = "post_type NOT IN ('revision', 'post', '_pods_pod', 'page', 'attachment', 'acf-field', 'acf-field-group', 'nav_menu_item')";
+
+			$list_select_post_type = array_diff( $list_all_posts_types, $list_except );
+			$list_select_post_type_str = implode( '","', $list_select_post_type );
+			$t = 'post_type IN ("' . $list_select_post_type_str .'")';
+			//$t = "post_type NOT IN ('revision', 'post', '_pods_pod', 'page', 'attachment', 'acf-field', 'acf-field-group', 'nav_menu_item')";
 		}
 
 		if ( $settings['wpns_in_post'] == 'on' && $settings['wpns_in_page'] == 'on' && $settings['wpns_in_custom_post_type'] == null ) {
@@ -62,11 +91,19 @@ class WPNS_SEARCH_DATA {
 		}
 
 		if ( $settings['wpns_in_post'] == null && $settings['wpns_in_page'] == 'on' && $settings['wpns_in_custom_post_type'] == 'on' ) {
-			$t = "post_type NOT IN ('revision', 'post', '_pods_pod', 'attachment', 'acf-field', 'acf-field-group', 'nav_menu_item')";
+			array_unshift( $list_all_posts_types, 'page' );
+			$list_select_post_type = array_diff( $list_all_posts_types, $list_except );
+			$list_select_post_type_str = implode( '","', $list_select_post_type );
+			$t = 'post_type IN ("' . $list_select_post_type_str .'")';
+			//$t = "post_type NOT IN ('revision', 'post', '_pods_pod', 'attachment', 'acf-field', 'acf-field-group', 'nav_menu_item')";
 		}
 
 		if ( $settings['wpns_in_post'] == 'on' && $settings['wpns_in_page'] == null && $settings['wpns_in_custom_post_type'] == 'on' ) {
-			$t = "post_type NOT IN ('revision', 'page', '_pods_pod', 'attachment', 'acf-field', 'acf-field-group', 'nav_menu_item')";
+			array_unshift( $list_all_posts_types, 'post' );
+			$list_select_post_type = array_diff( $list_all_posts_types, $list_except );
+			$list_select_post_type_str = implode( '","', $list_select_post_type );
+			$t = 'post_type IN ("' . $list_select_post_type_str .'")';
+			//$t = "post_type NOT IN ('revision', 'page', '_pods_pod', 'attachment', 'acf-field', 'acf-field-group', 'nav_menu_item')";
 		}
 
 

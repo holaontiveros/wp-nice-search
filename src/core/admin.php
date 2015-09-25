@@ -80,7 +80,7 @@ class WPNS_Admin {
 	 * function callback to render html for plugin page
 	 */
 	public function wpns_html_plugin_page() {
-		include WPNS_DIR . '/templates/admin.php';
+		include WPNS_DIR . '/src/templates/admin.php';
 	}
 
 	/**
@@ -186,7 +186,8 @@ class WPNS_Admin {
 	public function wpns_validate_options( $input ) {
 
 		$valid = array();
-		$valid['wpns_placeholder'] = preg_replace( '/[^a-zA-Z. ]/', '', $input['wpns_placeholder'] );
+		//$valid['wpns_placeholder'] = preg_replace( '/[^a-zA-Z. ]/', '', $input['wpns_placeholder'] );
+		$valid['wpns_placeholder'] = $input['wpns_placeholder'];
 
 		// checkbox value
 		$valid['wpns_in_all'] = $input['wpns_in_all'];
