@@ -184,6 +184,11 @@ class WPNS_Admin {
 	 */
 	public function wpns_section_3() {
 		echo '<p>* Use this shortcode in content of the page or post or custom post type: <code>[wpns_search_form]</code></p>';
+		echo '<p>* To use this shortcode in template file: <code>&lt;?php echo do_shortcode("[wpns_search_form]"); ?&gt;</code></p>';
+		echo '<p>* Shortcode Options: </p>';
+		echo '<ul style="margin-left:20px;">';
+		echo '<li><label><b>only_search </b>(optional): TThis option determine place searching. ( Ex: <code>[wpns_search_form only_search="page"]</code> This shortcode only search in the pages)</label></li>';
+		echo '</ul>';
 	}
 
 	/**

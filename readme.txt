@@ -4,7 +4,7 @@ Donate link: http://duywp.com/
 Tags: search, ajax, jquery, form
 Requires at least: 3.9
 Tested up to: 4.2.2
-Stable tag: 1.0.4
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Using Ajax to searching
 
 WP Nice Search plugin allows you searching in your site with ajax.
 
-= Featured =
+= Features =
 * Search using ajax to recieve results
 * Allow to display the featured icon, metapost info (author, date, taxonomy...)
 * Custom the search form
@@ -25,7 +25,7 @@ You can put [wpns_search_form] shortcode into the template file by use this func
 
 `<?php echo do_shortcode('[wpns_search_form]'); ?>`
 
-or put this shortcode [wpns_search_form] in the pages, post and sidebar.
+or put this shortcode `[wpns_search_form]` in the pages, post and sidebar.
 
 = Bug Reports =
 
@@ -59,6 +59,13 @@ If you have any ideas or got any issues please send me an email to duyngha@gmail
 
 == Changelog ==
 
+= 1.0.6 =
+* Fixed: Fixed css input issue.
+* Add: Add option only_search for shortcode form.
+
+= 1.0.5 =
+* Fixed: Fixed placeholder text issue. 
+
 = 1.0.4 =
 * Add: Add 2 options allow to display the featured and metapost info within resutls list
 
@@ -79,6 +86,10 @@ If you have any ideas or got any issues please send me an email to duyngha@gmail
 Publish plugin
 
 == Upgrade Notice ==
+
+= 1.0.6 =
+* Fixed: Fixed css input issue.
+* Add: Add option only_search for shortcode form.
 
 = 1.0.4 =
 * Add: Add 2 options allow to display the featured and metapost info within resutls list

@@ -25,6 +25,8 @@ function wpns_plugin_activate() {
 
 		// options for form
 		'wpns_placeholder' => 'Type your words here...',
+		//special options
+		'wpns_only_search' => '',
 	);
 
 	if (version_compare(get_bloginfo('version'), WPNS_REQUIRE_VER, '<')) {
@@ -35,4 +37,21 @@ function wpns_plugin_activate() {
 		update_option( 'wpns_options' , $default_settings);
 	}
 }
+
+/*	$default_settings = array(
+		// global options
+		'wpns_in_all' => null,
+		'wpns_in_post' => 'on',
+		'wpns_in_page' => null,
+		//'wpns_in_category' => null,
+		'wpns_in_custom_post_type' => null,
+		'wpns_items_featured' => null,
+		'chk_items_meta' => null,
+
+		// options for form
+		'wpns_placeholder' => 'Type your words here...',
+		//special options
+		'wpns_only_search' => '',
+	);
+update_option( 'wpns_options' , $default_settings);*/
 

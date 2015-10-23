@@ -11,7 +11,22 @@
     -webkit-border-radius: $tl $tr $br $bl;
     -o-border-radius: $tl $tr $br $bl;
 }
-
+@mixin before($selector) {
+	#{ $selector }::before {
+		box-sizing: inherit;
+		clear: both;
+		content: "";
+		display: table;
+	}
+}
+@mixin after($selector) {
+	#{ $selector }::after {
+		box-sizing: inherit;
+		clear: both;
+		content: "";
+		display: table;
+	}
+}
 
 /* Individual mixin */
 @mixin results-box-fix($border_color, $top) {
@@ -53,7 +68,10 @@
 		    font-size: 14px;
 		    padding: 15px;
 		    height: 50px;
+		    width: 100%;
+		    box-sizing: border-box;
 		}
+
 		#wpns_search_input::-moz-placeholder { @include place-holder; }
 		#wpns_search_input:-moz-placeholder { @include place-holder; }
 		#wpns_search_input::-webkit-input-placeholder { @include place-holder; }
