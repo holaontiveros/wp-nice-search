@@ -11,6 +11,12 @@ Use ajax to search while you typing the text.
 * Search by Post, Page, Category, Taxonomy, Custom post type
 * Option for shortcode.
 
+## Installation
+
+* Unzip the download package
+* Upload `wp-nice-search` to the `/wp-content/plugins/` directory
+* Activate the plugin through the 'Plugins' menu in WordPress
+
 ***
 ## How to use
-* Use the shortcode to get the search form [wpns_search_form]
+* Use the shortcode to get the search form `[wpns_search_form]`
