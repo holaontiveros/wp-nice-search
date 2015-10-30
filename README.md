@@ -1,7 +1,7 @@
 # wp-nice-search
 
 [![License](https://img.shields.io/packagist/l/rilwis/meta-box.svg)](https://duywp.com)
-[![Version](https://img.shields.io/wordpress/v/akismet.svg)](https://wordpress.org/plugins/wp-nice-search/)
+[![Version](https://img.shields.io/wordpress/plugin/v/wp-nice-search.svg)](https://wordpress.org/plugins/wp-nice-search/)
 [![Total Downloads](https://img.shields.io/wordpress/plugin/dt/wp-nice-search.svg)](https://wordpress.org/plugins/wp-nice-search/)
 
 ***
