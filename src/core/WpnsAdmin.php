@@ -1,11 +1,14 @@
 <?php
+
+namespace core;
+
 /**
  * Create admin page and register script for plugin
  * @package wpns
  * @author Duy Nguyen
  */
 
-class WPNS_Admin {
+class WpnsAdmin {
 	/**
 	 * @var string $page_title Holds text title of plugin which displayed in browser bar
 	 */
@@ -48,9 +51,9 @@ class WPNS_Admin {
 	 */
 	function __construct() {
 		add_action( 'wp_enqueue_scripts', array( &$this, 'wpns_plugin_script' ) );
+		add_action( 'admin_enqueue_scripts', array( &$this, 'wpns_admin_script' ) );
 		add_action( 'admin_menu', array( &$this, 'wpns_add_plugin_page' ) );
 		add_action( 'admin_init', array( &$this, 'wpns_admin_init' ) );
-		add_action( 'admin_enqueue_scripts', array( &$this, 'wpns_admin_script' ) );
 		$this->wpns_get_options( 'wpns_options' );
 	}
 
@@ -73,7 +76,13 @@ class WPNS_Admin {
 	 * function callback to add plugin page in plugins menu
 	 */
 	public function wpns_add_plugin_page() {
-		add_options_page( $this->page_title, $this->menu_title, $this->capability, $this->menu_slug, array( &$this, 'wpns_html_plugin_page' ) );
+		add_options_page(
+			$this->page_title,
+			$this->menu_title,
+			$this->capability,
+			$this->menu_slug,
+			array(&$this, 'wpns_html_plugin_page' )
+		);
 	}
 
 	/**
@@ -226,6 +235,4 @@ class WPNS_Admin {
 		$this->settings = $options;
 	}
 
-} // end class WPNS_Admin
-
-new WPNS_Admin;
+} // end class WpnsAdmin

@@ -1,4 +1,7 @@
 <?php
+
+namespace core;
+
 /**
  * Register script for ajax script and handle request search ajax
  * 
@@ -7,34 +10,68 @@
  * @since 1.0.0
  * @author Duy Nguyen
  */
-class WPNS_SEARCH_DATA {
+class WpnsRegisterScript {
 	/**
 	 * Initiliaze
 	 */
-	function __construct() {
-
-		add_action( 'template_redirect', array( &$this, 'wpns_register_script') );
-
+	function __construct()
+	{
+		add_action(
+			'template_redirect',
+			array(&$this, 'wpns_register_script')
+		);
 		// enable ajax for logged-in user
-		add_action( 'wp_ajax_wpns_search_ajax', array( &$this, 'wpns_search_data') );
-
+		add_action(
+			'wp_ajax_wpns_search_ajax',
+			array(&$this, 'wpns_search_data')
+		);
 		// enabled ajax for visitors user
-		add_action( 'wp_ajax_nopriv_wpns_search_ajax', array( &$this, 'wpns_search_data') );
+		add_action(
+			'wp_ajax_nopriv_wpns_search_ajax',
+			array(&$this, 'wpns_search_data')
+		);
+
+		// test code
+		// enable ajax for logged-in user
+		add_action(
+			'wp_ajax_get_results',
+			array(&$this, 'TestData')
+		);
+		// enabled ajax for visitors user
+		add_action(
+			'wp_ajax_nopriv_get_results',
+			array(&$this, 'TestData')
+		);
 	}
+
+
+	public function TestData()
+	{
+		$path = WPNS_DIR . '/src/templates/ListResults.php';
+		$data = file_get_contents($path);
+		echo $data;
+		wp_die();
+	}
+
 
 	/**
 	 * Add script for ajax request
 	 */
-	public function wpns_register_script() {
-
-		wp_enqueue_script( 'wpns_ajax_search', WPNS_URL . 'assist/js/search.js', array('jquery'), '', true );
+	public function wpns_register_script()
+	{
+		wp_enqueue_script(
+			'wpns_ajax_search',
+			WPNS_URL . 'assist/js/search.js',
+			array('jquery'),
+			'',
+			true
+		);
 
 		$protocol = isset( $_SERVER['HTTPS']) ? 'https://' : 'http://';
-
 		$params = array(
-			'ajaxurl' => admin_url( 'admin-ajax.php', $protocol )
+			'ajaxurl' => admin_url('admin-ajax.php', $protocol)
 		);
-		wp_localize_script( 'wpns_ajax_search', 'wpns_ajax_url', $params );
+		wp_localize_script('wpns_ajax_search', 'wpns_ajax_url', $params);
 	}
 
 	/**
@@ -42,11 +79,13 @@ class WPNS_SEARCH_DATA {
 	 */
 	public function wpns_search_data() {
 		global $wpdb;
-		$settings = get_option( 'wpns_options' );
+		$settings = get_option('wpns_options');
 		//var_dump($settings);
-		$list_all_posts_types = get_post_types( array(
-			'_builtin' => false,
-		) );
+		$list_all_posts_types = get_post_types(
+			array(
+				'_builtin' => false,
+			)
+		);
 
 		$list_except = array(
 			'product_variation',
@@ -60,10 +99,10 @@ class WPNS_SEARCH_DATA {
 
 		//var_dump($list_select_post_type);exit();
 
-		if ( $settings['wpns_only_search'] != '' ) {
+		if ($settings['wpns_only_search'] != '') {
 			$t = "post_type='" . $settings['wpns_only_search'] . "'";
 		} else {
-			if ( $settings['wpns_in_all'] == 'on' || ( $settings['wpns_in_post'] == 'on' && $settings['wpns_in_page'] == 'on' && $settings['wpns_in_custom_post_type'] == 'on' )) {
+			if ($settings['wpns_in_all'] == 'on' || ($settings['wpns_in_post'] == 'on' && $settings['wpns_in_page'] == 'on' && $settings['wpns_in_custom_post_type'] == 'on' )) {
 
 				array_unshift( $list_all_posts_types, 'page' );
 				array_unshift( $list_all_posts_types, 'post' );
@@ -337,6 +376,4 @@ class WPNS_SEARCH_DATA {
 		return implode('', $out );
 	}
 
-} // end class WPNS_SEARCH_DATA
-
-new WPNS_SEARCH_DATA;
+}// end class WpnsRegisterScript
