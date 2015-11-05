@@ -50,12 +50,14 @@ class WpnsFormShortcode
 		$settings['wpns_only_search'] = $options['only_search'];
 		update_option( 'wpns_options' , $settings);
 
-		if ($settings['wpns_items_featured'] == 'on') {
-			new ImageResult;
-		}
-
-		if ($settings['chk_items_meta'] == 'on') {
+		if ($settings['wpns_items_featured'] == 'on' || $settings['chk_items_meta'] == 'on') {
+			new FullResult;
+		} elseif ($settings['chk_items_meta'] == 'on') {
 			new MetaResult;
+		} elseif ($settings['wpns_items_featured'] == 'on') {
+			new ImageResult;
+		} else {
+			new DefaultResult;
 		}
 
 		include WPNS_DIR . '/test/TestForm.php';

@@ -8,7 +8,8 @@ namespace core;
  * @author Duy Nguyen
  */
 
-class WpnsAdmin {
+class WpnsAdmin
+{
 	/**
 	 * @var string $page_title Holds text title of plugin which displayed in browser bar
 	 */
@@ -49,18 +50,20 @@ class WpnsAdmin {
 	/**
 	 * Initiliaze
 	 */
-	function __construct() {
-		add_action( 'wp_enqueue_scripts', array( &$this, 'wpns_plugin_script' ) );
-		add_action( 'admin_enqueue_scripts', array( &$this, 'wpns_admin_script' ) );
-		add_action( 'admin_menu', array( &$this, 'wpns_add_plugin_page' ) );
-		add_action( 'admin_init', array( &$this, 'wpns_admin_init' ) );
-		$this->wpns_get_options( 'wpns_options' );
+	public function __construct()
+	{
+		add_action('wp_enqueue_scripts', array(&$this, 'wpns_plugin_script'));
+		add_action('admin_enqueue_scripts', array(&$this, 'wpns_admin_script'));
+		add_action('admin_menu', array(&$this, 'wpns_add_plugin_page'));
+		add_action('admin_init', array(&$this, 'wpns_admin_init'));
+		$this->wpns_get_options('wpns_options');
 	}
 
 	/**
 	 * function callback to enqueue scripts and style
 	 */
-	public function wpns_plugin_script() {
+	public function wpns_plugin_script()
+	{
 		wp_enqueue_style( 'wpns-style', WPNS_URL . 'assist/css/style.min.css', array(), WPNS_PLUGIN_VER );
 		wp_enqueue_style( 'wpns-fontawesome', WPNS_URL . 'assist/css/font-awesome.min.css', array(), WPNS_PLUGIN_VER );
 	}
@@ -68,14 +71,16 @@ class WpnsAdmin {
 	/**
 	 * Add script to admin
 	 */
-	public function wpns_admin_script() {
+	public function wpns_admin_script()
+	{
 		wp_enqueue_script( 'wpns-admin-script', WPNS_URL . 'assist/js/admin.js', array('jquery'), WPNS_PLUGIN_VER );
 	}
 
 	/**
 	 * function callback to add plugin page in plugins menu
 	 */
-	public function wpns_add_plugin_page() {
+	public function wpns_add_plugin_page()
+	{
 		add_options_page(
 			$this->page_title,
 			$this->menu_title,
@@ -88,7 +93,8 @@ class WpnsAdmin {
 	/**
 	 * function callback to render html for plugin page
 	 */
-	public function wpns_html_plugin_page() {
+	public function wpns_html_plugin_page()
+	{
 		include WPNS_DIR . '/src/templates/admin.php';
 	}
 
@@ -112,14 +118,16 @@ class WpnsAdmin {
 	/**
 	 * Draw the section header group 1
 	 */
-	public function wpns_section_1() {
+	public function wpns_section_1()
+	{
 		echo '<h3>Global settings</h3>';
 	}
 
 	/**
 	 * Display and fill the field group 1
 	 */
-	public function wpns_setting_checkbox() {
+	public function wpns_setting_checkbox()
+	{
 		?>
 		<fieldset>
 			<label>
@@ -154,14 +162,16 @@ class WpnsAdmin {
 	/**
 	 * Draw the section header group 2
 	 */
-	public function wpns_section_2() {
+	public function wpns_section_2()
+	{
 		echo '<h3>Form Design</h3>';
 	}
 
 	/**
 	 * Display and fill the field group 2
 	 */
-	public function wpns_setting_text() {
+	public function wpns_setting_text()
+	{
 		// get option value from database
 		$text_string = $this->settings['wpns_placeholder'];
 		// echo the field
@@ -171,7 +181,8 @@ class WpnsAdmin {
 	/**
 	 * Display and fill the field group 3
 	 */
-	public function wpns_setting_group_3() {
+	public function wpns_setting_group_3()
+	{
 		?>
 		<fieldset>
 			<label>
@@ -191,7 +202,8 @@ class WpnsAdmin {
 	/**
 	 * Draw the section header group 2
 	 */
-	public function wpns_section_3() {
+	public function wpns_section_3()
+	{
 		echo '<p>* Use this shortcode in content of the page or post or custom post type: <code>[wpns_search_form]</code></p>';
 		echo '<p>* To use this shortcode in template file: <code>&lt;?php echo do_shortcode("[wpns_search_form]"); ?&gt;</code></p>';
 		echo '<p>* Shortcode Options: </p>';
@@ -206,7 +218,8 @@ class WpnsAdmin {
 	 *
 	 * @return mix $valid
 	 */
-	public function wpns_validate_options( $input ) {
+	public function wpns_validate_options($input)
+	{
 
 		$valid = array();
 		//$valid['wpns_placeholder'] = preg_replace( '/[^a-zA-Z. ]/', '', $input['wpns_placeholder'] );
@@ -230,8 +243,9 @@ class WpnsAdmin {
 	 *
 	 * @return array $options
 	 */
-	public function wpns_get_options( $name = '' ) {
-		$options = get_option( $name );
+	public function wpns_get_options($name = '')
+	{
+		$options = get_option($name);
 		$this->settings = $options;
 	}
 

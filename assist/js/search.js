@@ -7,6 +7,10 @@
 jQuery(document).ready(function($){
 	var $ = jQuery;
 
+	result_box = $('#wpns_results_box');
+	loading = $('#wpns_loading_search');
+	search_icon = $('#wpns_search_icon');
+
 	// test code
 	$('#test_input').click(function(){
 		var data = {
@@ -20,9 +24,9 @@ jQuery(document).ready(function($){
 	});
 
     $("#test_input").keyup(function(){
-
+    	loading.show();
         // Retrieve the input field text and reset the count to zero
-        var filter = $(this).val(), count = 0;
+        var filter = $(this).val();
  
         // Loop through the comment list
         $(".results li").each(function(){
@@ -39,15 +43,10 @@ jQuery(document).ready(function($){
 		        	$('.results').show();
 		        }
                 $(this).show();
-                count++;
             }
         });
- 
     });
 
-	result_box = $('#wpns_results_box');
-	loading = $('#wpns_loading_search');
-	search_icon = $('#wpns_search_icon');
 	compare_key = '';
 	/* event occurs when people type */
 	$('#wpns_search_input').keyup(function(){

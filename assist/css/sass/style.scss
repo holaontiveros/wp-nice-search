@@ -42,110 +42,21 @@
 }
 @mixin place-holder { font-size: 16px; color: #ccc; }
 
-/* Trunk 0 */
-#wpns-search-wrap {
+// search box
+.wpns-search-box {
 
+}
+.wpns-input-box {
 	position: relative;
 
-	/* Lead 1.1 - Form */
-	#wpns_search_form {
-		#wpns_search_icon {
-			font-size: 18px;
-			position: absolute;
-			right: 15px;
-			top: 15px;
-		}
-		#wpns_loading_search {
-		    @include border-radius(30px, 30px, 30px, 30px);		
-		    position: absolute;
-		    right: 10px;
-		    top:10px;
-		}
-		#wpns_search_input {
-		    @include border-radius(30px, 30px, 30px, 30px);		
-		    border: 1px solid #ccc;
-		    background-color: #fff;
-		    font-size: 14px;
-		    padding: 15px;
-		    height: 50px;
-		    width: 100%;
-		    box-sizing: border-box;
-		}
-
-		#wpns_search_input::-moz-placeholder { @include place-holder; }
-		#wpns_search_input:-moz-placeholder { @include place-holder; }
-		#wpns_search_input::-webkit-input-placeholder { @include place-holder; }
-		#wpns_search_input:-ms-input-placeholder { @include place-holder; }
+	input {
+		box-sizing: border-box;
+		height: 40px;
+		padding: 0 10px;
 	}
-
-	/* Lead 1.2 */
-	#wpns_results_box {
-	    @include border-radius(5px, 5px, 5px, 5px);
-	    @include box-shadow(0, 0, 10px, -3px, #ccc);
-	    background-color: #fff;
-	    border: 1px solid #ccc;
-	    margin-top: 10px;
-	    padding: 20px;
-	    position: absolute;
-	    z-index: 1;
-	    font-size: 13px;
-	    top: 60px;
-	    width: 100%;
-
-	    /* Lead 2.1 */
-	    h4 { 
-	    	margin: 0 0 5px 0;
-	    	border-bottom: 2px solid #ccc;
-	    	padding-bottom: 10px;
-	    	font-size: 18px;
-	    }
-
-	    /* Lead 2.2 */
-	    .wpns_results_list {
-	    	margin: 0;
-	    	padding: 0;
-	    	max-height: 300px;
-	    	overflow-y: auto;
-
-	    	/* Lead 3.1 */
-	    	li {
-	    		list-style: none;
-	    		margin-bottom: 5px;
-
-	    		/* Lead 4.1 */
-	    		i { padding-right: 5px; }
-	    		a { text-decoration: none; border: 0; vertical-align: middle; }
-	    		img { 
-	    			width: 30px; 
-	    			height: 30px; 
-	    			border: 1px solid #ccc;
-	    			@include border-radius(3px, 3px, 3px, 3px);
-	    		}
-	    		.wpns-items-pre {
-	    			display: inline-block;
-	    			height: 30px;
-	    		}
-	    		.list-item-box {
-	    			display: inline-block;
-	    			vertical-align: middle;
-	    			padding-left: 10px;
-
-	    			.wpns-meta {
-	    				i {
-		    				.wpns-cate {
-		    					.comma:last-child { display: none; }
-		    				}
-	    				}
-	    			}
-	    		}
-	    	}
-	    }
-	}
-
-	/* Lead 1.3 */
-	#wpns_results_box::before { @include results-box-fix(#ccc, -25px); }
-
-	/* Lead 1.4 */
-	#wpns_results_box::after { @include results-box-fix(#fff, -24px); }
-
+}
+#wpns_search_icon {
+	position: absolute;
+	top: 10px;
+	right: 10px;
 }
