@@ -73,6 +73,7 @@ abstract class Results
 	public function getSearchIn()
 	{
 		$search = [];
+		//var_dump($this->settings);
 		if ($this->settings['wpns_only_search'] != '') {
 			$specific = $this->settings['wpns_only_search'];
 			$search[] = "'$specific'";
@@ -84,11 +85,24 @@ abstract class Results
 				foreach ($cpts as $value) {
 					$search[] = "'$value'";
 				}
-			} elseif ($this->settings['wpns_in_post'] == 'on') {
+			} elseif ($this->settings['wpns_in_post'] == 'on' && $this->settings['wpns_in_page'] == 'on') {
 				$search[] = "'post'";
+				$search[] = "'page'";
+			} elseif ($this->settings['wpns_in_post'] == 'on' && $this->settings['wpns_in_custom_post_type'] == 'on') {
+				$search[] = "'post'";
+				foreach ($cpts as $value) {
+					$search[] = "'$value'";
+				}
+			} elseif ($this->settings['wpns_in_page'] == 'on' && $this->settings['wpns_in_custom_post_type'] == 'on') {
+				$search[] = "'page'";
+				foreach ($cpts as $value) {
+					$search[] = "'$value'";
+				}
+			} elseif ($this->settings['wpns_in_post'] == 'on') {
+				$search[] = "'page'";
 			} elseif ($this->settings['wpns_in_page'] == 'on') {
 				$search[] = "'page'";
-			} else {
+			} elseif ($this->settings['wpns_in_custom_post_type'] == 'on') {
 				foreach ($cpts as $value) {
 					$search[] = "'$value'";
 				}

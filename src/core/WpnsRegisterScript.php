@@ -5,8 +5,6 @@ namespace core;
 /**
  * Register script for ajax script and handle request search ajax
  * 
- * @todo create hook for except arguments
- * @package wpns
  * @since 1.0.0
  * @author Duy Nguyen
  */
@@ -20,16 +18,6 @@ class WpnsRegisterScript {
 			'template_redirect',
 			array(&$this, 'wpns_register_script')
 		);
-		// enable ajax for logged-in user
-/*		add_action(
-			'wp_ajax_wpns_search_ajax',
-			array(&$this, 'wpns_search_data')
-		);*/
-		// enabled ajax for visitors user
-	/*	add_action(
-			'wp_ajax_nopriv_wpns_search_ajax',
-			array(&$this, 'wpns_search_data')
-		);*/
 
 		// test code
 		// enable ajax for logged-in user
@@ -67,7 +55,7 @@ class WpnsRegisterScript {
 			true
 		);
 
-		$protocol = isset( $_SERVER['HTTPS']) ? 'https://' : 'http://';
+		$protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
 		$params = array(
 			'ajaxurl' => admin_url('admin-ajax.php', $protocol)
 		);
