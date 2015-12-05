@@ -38,6 +38,7 @@ class FullResult extends Results
 				get_post_thumbnail_id($id)
 			);
 
+			// featured image
 			if ($post_image_url == '') {
 				$no_image = WPNS_URL . 'assist/images/no_photo.jpg';
 				$post_image_url = apply_filters('no_image', $no_image);

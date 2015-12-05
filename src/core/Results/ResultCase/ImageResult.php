@@ -29,8 +29,10 @@ class ImageResult extends Results
 				get_post_thumbnail_id($id)
 			);
 
+			// featured image
 			if ($post_image_url == '') {
-				$post_image_url = WPNS_URL . 'assist/images/no_photo.jpg';
+				$no_image = WPNS_URL . 'assist/images/no_photo.jpg';
+				$post_image_url = apply_filters('no_image', $no_image);
 			}
 
 			$lists .= '<li>';

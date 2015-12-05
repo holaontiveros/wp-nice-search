@@ -64,8 +64,18 @@ class WpnsAdmin
 	 */
 	public function wpns_plugin_script()
 	{
-		wp_enqueue_style( 'wpns-style', WPNS_URL . 'assist/css/style.min.css', array(), WPNS_PLUGIN_VER );
-		wp_enqueue_style( 'wpns-fontawesome', WPNS_URL . 'assist/css/font-awesome.min.css', array(), WPNS_PLUGIN_VER );
+		wp_enqueue_style(
+			'wpns-style',
+			WPNS_URL . 'assist/css/style.min.css',
+			array(),
+			WPNS_PLUGIN_VER
+		);
+		wp_enqueue_style(
+			'wpns-fontawesome',
+			WPNS_URL . 'assist/css/font-awesome.min.css',
+			array(),
+			WPNS_PLUGIN_VER
+		);
 	}
 
 	/**
@@ -73,7 +83,12 @@ class WpnsAdmin
 	 */
 	public function wpns_admin_script()
 	{
-		wp_enqueue_script( 'wpns-admin-script', WPNS_URL . 'assist/js/admin.js', array('jquery'), WPNS_PLUGIN_VER );
+		wp_enqueue_script(
+			'wpns-admin-script',
+			WPNS_URL . 'assist/js/admin.js',
+			array('jquery'),
+			WPNS_PLUGIN_VER
+		);
 	}
 
 	/**
@@ -86,7 +101,7 @@ class WpnsAdmin
 			$this->menu_title,
 			$this->capability,
 			$this->menu_slug,
-			array(&$this, 'wpns_html_plugin_page' )
+			array(&$this, 'wpns_html_plugin_page')
 		);
 	}
 
@@ -102,12 +117,32 @@ class WpnsAdmin
 	 * Register and define the settings
 	 */
 	public function wpns_admin_init() {
-		register_setting( 'wpns_options', 'wpns_options', array( &$this, 'wpns_validate_options' ) );
+		register_setting(
+			'wpns_options',
+			'wpns_options',
+			array(&$this, 'wpns_validate_options')
+		);
 
-		add_settings_section( 'wpns_group_1', '', array( &$this, 'wpns_section_1'), $this->menu_slug );
-		add_settings_field( 'wpns_checkbox', 'Search In', array( &$this, 'wpns_setting_checkbox' ), $this->menu_slug, 'wpns_group_1' );
-
-		add_settings_field( 'wpns_fields_group_3', 'Options', array( &$this, 'wpns_setting_group_3' ), $this->menu_slug, 'wpns_group_1' );
+		add_settings_section(
+			'wpns_group_1',
+			'',
+			array(&$this, 'wpns_section_1'),
+			$this->menu_slug
+		);
+		add_settings_field(
+			'wpns_checkbox',
+			'Search In',
+			array(&$this, 'wpns_setting_checkbox' ),
+			$this->menu_slug,
+			'wpns_group_1'
+		);
+		add_settings_field(
+			'wpns_fields_group_3',
+			'Options',
+			array(&$this, 'wpns_setting_group_3'),
+			$this->menu_slug,
+			'wpns_group_1'
+		);
 
 		add_settings_section( 'wpns_group_2', '', array( &$this, 'wpns_section_2'), $this->menu_slug );
 		add_settings_field( 'wpns_text', 'Placeholder Text', array( &$this, 'wpns_setting_text' ), $this->menu_slug, 'wpns_group_2' );
@@ -145,11 +180,6 @@ class WpnsAdmin
 				<i>Page</i>
 			</label>
 			<br>
-			<!--label>
-				<input type="checkbox" class="chk_items" name="wpns_options[wpns_in_category]" <?php echo ($this->settings['wpns_in_category'] == 'on') ? 'checked' : ''; ?> />
-				Category
-			</label>
-			<br-->
 			<label>
 				<input type="checkbox" class="chk_items" name="wpns_options[wpns_in_custom_post_type]" <?php echo ($this->settings['wpns_in_custom_post_type'] == 'on') ? 'checked' : ''; ?> />
 				<i>Custom post type</i>

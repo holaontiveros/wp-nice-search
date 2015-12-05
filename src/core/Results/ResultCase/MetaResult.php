@@ -37,7 +37,11 @@ class MetaResult extends Results
 			$post_image_url = wp_get_attachment_thumb_url(
 				get_post_thumbnail_id($id)
 			);
-			$post_date = get_the_date('d M, Y', $id);
+
+			// post date
+			$format = 'd M, Y';
+			$post_date = get_the_date(apply_filters('format_date', $format), $id);
+
 			$post_author = get_user_meta($post_obj->post_author);
 			$first_name = $post_author['first_name'][0];
 			$last_name = $post_author['last_name'][0];
