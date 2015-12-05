@@ -47,57 +47,8 @@ jQuery(document).ready(function($){
         });
     });
 
-	compare_key = '';
-	/* event occurs when people type */
-	$('#wpns_search_input').keyup(function(){
-
-		result_box.hide();
-
-		var keyword = $(this).val();
-
-		if (keyword != '' && keyword != compare_key) {
-			/* Show/Hide loading and search icon */
-			loading.show();
-			search_icon.hide();
-
-			/* delay keyup event */
-		    delay(function(){
-		    	
-					var data = {
-						action : 'wpns_search_ajax',
-						keyword : keyword,
-					};
-					$.post(wpns_ajax_url.ajaxurl, data, function(response){
-						$('.wpns_results_list').remove();
-						loading.hide();
-						search_icon.show();
-						result_box.append(response).slideDown(300);
-					});
-					compare_key = keyword;
-
-		    });
-	    }
-	    
-		return false;
-	});
-	
-
-	/* Hide results box when click around the box */
-	$(':not(#wpns_results_box)').click(function(){
-		result_box.hide();
-	});
-	
-	/* Set delay time and clear settimeout */
-	var delay = (function(){
-		var timer = 0;
-		return function(callback, ms){
-			clearTimeout(timer);
-			timer = setTimeout(callback, ms);
-		};
-	})();
-
 	/* Disabled submit event of the form */
-	$('#wpns_search_form').submit(function(e){
+	$('#test_form').submit(function(e){
 		e.preventDefault();
 	});
 });

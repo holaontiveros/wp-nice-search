@@ -3,13 +3,9 @@
 namespace shortcode;
 
 use core\Results\Results as Results;
-
 use core\Results\ResultCase\DefaultResult as DefaultResult;
-
 use core\Results\ResultCase\ImageResult as ImageResult;
-
 use core\Results\ResultCase\MetaResult as MetaResult;
-
 use core\Results\ResultCase\FullResult as FullResult;
 
 /**
@@ -50,7 +46,7 @@ class WpnsFormShortcode
 		$settings['wpns_only_search'] = $options['only_search'];
 		update_option( 'wpns_options' , $settings);
 
-		if ($settings['wpns_items_featured'] == 'on' || $settings['chk_items_meta'] == 'on') {
+		if ($settings['wpns_items_featured'] == 'on' && $settings['chk_items_meta'] == 'on') {
 			new FullResult;
 		} elseif ($settings['chk_items_meta'] == 'on') {
 			new MetaResult;

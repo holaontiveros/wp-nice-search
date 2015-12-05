@@ -30,12 +30,14 @@ class ImageResult extends Results
 			);
 
 			if ($post_image_url == '') {
-				$post_image_url = WPNS_URL . '/assist/images/no_photo.jpg';
+				$post_image_url = WPNS_URL . 'assist/images/no_photo.jpg';
 			}
 
 			$lists .= '<li>';
-			$lists .= '<img src="' . $post_image_url . '" alt="" width=50 />';
-			$lists .= '<a href="' . $post_url . '">' . $post_title . '</a>';
+				$lists .= '<img class="thumbnail" src="' . $post_image_url . '" alt="" width=50 />';
+				$lists .= '<div class="post-information">';
+					$lists .= '<a href="' . $post_url . '">' . $post_title . '</a>';
+				$lists .= '</div>';
 			$lists .= '</li>';
 		}
 		$lists .= '</ul>';

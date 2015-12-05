@@ -38,7 +38,7 @@ class FullResult extends Results
 			);
 
 			if ($post_image_url == '') {
-				$post_image_url = WPNS_URL . '/assist/images/no_photo.jpg';
+				$post_image_url = WPNS_URL . 'assist/images/no_photo.jpg';
 			}
 
 			$post_date = get_the_date('d M, Y', $id);
@@ -54,12 +54,14 @@ class FullResult extends Results
 
 			// create the list results
 			$lists .= '<li>';
-			$lists .= '<img src="' . $post_image_url . '" alt="" width=50 />';
-			$lists .= '<a href="' . $post_url . '">' . $post_title . '</a>';
-			$lists .= '<span>';
-				$lists .= '<span>' . $post_date . '</span>';
-				$lists .= '<span>' . $post_author_name . '</span>';
-			$lists .= '</span>';
+			$lists .= '<img class="thumbnail" src="' . $post_image_url . '" alt="" width=50 />';
+			$lists .= '<div class="post-information">';
+				$lists .= '<a href="' . $post_url . '">' . $post_title . '</a>';
+				$lists .= '<div class="metabox">';
+				$lists .= '<span class="post-date">' . $post_date . '</span>';
+				$lists .= '<span class="post-author"> ' . $post_author_name . '</span>';
+				$lists .= '</div>';
+			$lists .= '</div>';
 			$lists .= '</li>';
 		}
 

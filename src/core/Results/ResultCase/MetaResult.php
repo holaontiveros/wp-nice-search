@@ -51,10 +51,12 @@ class MetaResult extends Results
 			// create the list results
 			$lists .= '<li>';
 			$lists .= '<a href="' . $post_url . '">' . $post_title . '</a>';
-			$lists .= '<span>';
-				$lists .= '<span>' . $post_date . '</span>';
-				$lists .= '<span>' . $post_author_name . '</span>';
-			$lists .= '</span>';
+			$lists .= '<div class="post-information">';
+				$lists .= '<div class="metabox">';
+					$lists .= '<span class="post-date">' . $post_date . '</span>';
+					$lists .= '<span class="post-author">' . $post_author_name . '</span>';
+				$lists .= '</div>';
+			$lists .= '</div>';
 			$lists .= '</li>';
 		}
 

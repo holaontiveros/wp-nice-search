@@ -42,10 +42,7 @@
 }
 @mixin place-holder { font-size: 16px; color: #ccc; }
 
-// search box
-.wpns-search-box {
-
-}
+/* Search form */
 .wpns-input-box {
 	position: relative;
 
@@ -59,4 +56,24 @@
 	position: absolute;
 	top: 10px;
 	right: 10px;
+}
+
+/* list results */
+.wpns-search-box {
+	.results {
+		ul {
+			padding: 0;
+			margin: 0;
+			li {
+				list-style: none;
+				clear: both;
+
+				.thumbnail {
+					vertical-align: middle;
+					margin-right: 5px;
+					float: left;
+				}
+			}
+		}	
+	}
 }
