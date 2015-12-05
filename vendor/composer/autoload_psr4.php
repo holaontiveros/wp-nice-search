@@ -7,6 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'shortcode\\' => array($baseDir . '/src/shortcode'),
-    'core\\Filters\\' => array($baseDir . '/src/core/Filters'),
     'core\\' => array($baseDir . '/src/core'),
 );

@@ -1,6 +1,5 @@
 <?php
 
-use core\Filters\Filter as Filter;
 use core\Results\Results as Results;
 use core\Results\ResultCase\DefaultResult as DefaultResult;
 use core\Results\ResultCase\ImageResult as ImageResult;
@@ -17,4 +16,4 @@ $GLOBALS['wp_rewrite'] = new \WP_Rewrite();
 new WpnsAdmin;
 new WpnsFormShortcode;
 new WpnsRegisterScript;
-//new Filter;
+
