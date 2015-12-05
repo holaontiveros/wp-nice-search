@@ -2,6 +2,7 @@
 	"autoload": {
 		"psr-4": {
 			"core\\": "src/core",
+			"core\\Filters\\": "src/core/Filters",
 			"shortcode\\": "src/shortcode"
 		}
 	}

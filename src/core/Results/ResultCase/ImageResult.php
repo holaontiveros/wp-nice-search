@@ -21,7 +21,7 @@ class ImageResult extends Results
 		$lists = '';
 		$post_ids = $this->getPosts();
 		if (empty($post_ids)) return $lists;
-		$lists .= '<ul>';
+		$lists .= '<ul class="list-results imagelist">';
 		foreach ($post_ids as $id) {
 			$post_title = get_the_title($id);
 			$post_url = get_permalink($id);

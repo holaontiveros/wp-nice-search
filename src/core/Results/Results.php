@@ -73,28 +73,28 @@ abstract class Results
 	public function getSearchIn()
 	{
 		$search = [];
-		
 		if ($this->settings['wpns_only_search'] != '') {
 			$specific = $this->settings['wpns_only_search'];
 			$search[] = "'$specific'";
 		} else {
-			if ($this->settings['wpns_in_post'] == 'on') {
-				$search[] = "'post'";
-			}
-
-			if ($this->settings['wpns_in_page'] == 'on') {
-				$search[] = "'page'";
-			}
-			
 			$cpts = $this->getListCpts();
-
-			if ($this->settings['wpns_in_custom_post_type'] == 'on') {
+			if ($this->settings['wpns_in_all'] == 'on') {
+				$search[] = "'post'";
+				$search[] = "'page'";
+				foreach ($cpts as $value) {
+					$search[] = "'$value'";
+				}
+			} elseif ($this->settings['wpns_in_post'] == 'on') {
+				$search[] = "'post'";
+			} elseif ($this->settings['wpns_in_page'] == 'on') {
+				$search[] = "'page'";
+			} else {
 				foreach ($cpts as $value) {
 					$search[] = "'$value'";
 				}
 			}
 		}
-
+		//var_dump($search);
 		if (empty($search)) {
 			$search[] = "'post'";
 		}
@@ -110,6 +110,7 @@ abstract class Results
 		global $wpdb;
 		$cpts = [];
 		$cpts_except = [
+			'slider',
 			'_pods_field',
 			'_pods_pod',
 			'acf',

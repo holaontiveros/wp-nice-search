@@ -28,7 +28,7 @@ class MetaResult extends Results
 
 		if (empty($post_ids)) return $lists;
 
-		$lists .= '<ul>';
+		$lists .= '<ul class="list-results metalist">';
 
 		foreach ($post_ids as $id) {
 			$post_obj = get_post($id);

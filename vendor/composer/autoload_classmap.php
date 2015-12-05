@@ -6,11 +6,13 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'core\\Filters\\Filter' => $baseDir . '/src/core/Filters/Filter.php',
     'core\\Results\\ResultCase\\DefaultResult' => $baseDir . '/src/core/Results/ResultCase/DefaultResult.php',
     'core\\Results\\ResultCase\\FullResult' => $baseDir . '/src/core/Results/ResultCase/FullResult.php',
     'core\\Results\\ResultCase\\ImageResult' => $baseDir . '/src/core/Results/ResultCase/ImageResult.php',
     'core\\Results\\ResultCase\\MetaResult' => $baseDir . '/src/core/Results/ResultCase/MetaResult.php',
     'core\\Results\\Results' => $baseDir . '/src/core/Results/Results.php',
     'core\\WpnsAdmin' => $baseDir . '/src/core/WpnsAdmin.php',
+    'core\\WpnsRegisterScript' => $baseDir . '/src/core/WpnsRegisterScript.php',
     'shortcode\\WpnsFormShortcode' => $baseDir . '/src/shortcode/WpnsFormShortcode.php',
 );

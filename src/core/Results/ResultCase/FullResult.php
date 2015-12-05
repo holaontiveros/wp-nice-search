@@ -3,6 +3,7 @@
 namespace core\Results\ResultCase;
 
 use core\Results\Results as Results;
+use core\Filters\Filter as Filter;
 
 /**
  * This class create a default list with title and icons
@@ -27,7 +28,7 @@ class FullResult extends Results
 
 		if (empty($post_ids)) return $lists;
 
-		$lists .= '<ul>';
+		$lists .= '<ul class="list-results fulllist">';
 
 		foreach ($post_ids as $id) {
 			$post_obj = get_post($id);
@@ -38,10 +39,14 @@ class FullResult extends Results
 			);
 
 			if ($post_image_url == '') {
-				$post_image_url = WPNS_URL . 'assist/images/no_photo.jpg';
+				$no_image = WPNS_URL . 'assist/images/no_photo.jpg';
+				$post_image_url = apply_filters('no_image', $no_image);
 			}
 
-			$post_date = get_the_date('d M, Y', $id);
+			//var_dump(add_filter('format_date', array($this, 'callbackFormatDate')));
+			$format = 'd M, Y';
+			$post_date = get_the_date(apply_filters('format_date', $format), $id);
+
 			$post_author = get_user_meta($post_obj->post_author);
 			$first_name = $post_author['first_name'][0];
 			$last_name = $post_author['last_name'][0];

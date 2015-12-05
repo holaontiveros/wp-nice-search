@@ -74,6 +74,11 @@
 					float: left;
 				}
 			}
+			&.imagelist {
+				.post-information {
+					padding-top: 10px;
+				}
+			}
 		}	
 	}
 }
