@@ -9,7 +9,7 @@
 Use ajax to search while you typing the text.
 
 ## Featured
-* Search by Post, Page, Category, Taxonomy, Custom post type
+* Search by Post, Page, Custom post type
 * Option for shortcode.
 
 ## Installation
