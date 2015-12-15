@@ -23,11 +23,11 @@ class FullResult extends Results
 	 */
 	public function createList()
 	{
+		$list_style = $this->resultsWrap();
 		$lists = '';
-		$lists .= apply_filters(
-			'list_results_heading',
-			'<h4>Search Results:</h4>'
-		);
+		$lists .= '<' . $list_style['heading_tag'] . '>';
+		$lists .= $list_style['heading_text'];
+		$lists .= '</' . $list_style['heading_tag'] .'>';
 		$post_ids = $this->getPosts();
 
 		if (empty($post_ids)) return $lists;

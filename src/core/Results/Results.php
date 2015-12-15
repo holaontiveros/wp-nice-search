@@ -185,4 +185,17 @@ abstract class Results
 	 * abstract method. This method must be declared in sub class
 	 */
 	abstract public function createList();
+	
+	/**
+	 * markup wrap results list
+	 * 
+	 */
+	public function resultsWrap()
+	{
+		$wrap_default = array(
+			'heading_tag' => 'h3',
+			'heading_text' => 'Search Results'
+		);
+		return apply_filters('results_list', $wrap_default);
+	}
 }
