@@ -1,7 +1,7 @@
 /**
  * Handle all action of user on html elements in plugin admin page
  */
- jQuery(document).ready(function($){
+ jQuery(document).ready(function(){
  	var $ = jQuery;
  	$('#chk_all').click(function(){
  		if ($(this).is(':checked')) {

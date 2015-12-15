@@ -1,2 +1,55 @@
-.wpns-input-box{position:relative}.wpns-input-box input{box-sizing:border-box;height:40px;padding:0 10px}#wpns_search_icon{position:absolute;top:10px;right:10px}.wpns-search-box .results ul{padding:0;margin:0}.wpns-search-box .results ul li{list-style:none;clear:both}.wpns-search-box .results ul li .thumbnail{vertical-align:middle;margin-right:5px;float:left}.wpns-search-box .results ul.imagelist .post-information{padding-top:10px}
-/*# sourceMappingURL=style.min.css.map */
+/* CSS3 mixin */
+/* Individual mixin */
+/* Search form */
+.wpns-input-box {
+  position: relative;
+}
+
+.wpns-input-box input {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 0 10px;
+}
+
+#wpns_search_icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* list results */
+.wpns-search-box .results {
+  padding: 10px;
+}
+
+.wpns-search-box .results h4 {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.wpns-search-box .results .list-results {
+  padding: 0;
+  margin: 0;
+}
+
+.wpns-search-box .results .list-results li {
+  list-style: none;
+  clear: both;
+  width: 100%;
+  display: table;
+  margin-bottom: 5px;
+}
+
+.wpns-search-box .results .list-results li .thumbnail {
+  vertical-align: middle;
+  margin-right: 5px;
+  float: left;
+}
+
+.wpns-search-box .results .list-results li .post-information {
+  line-height: normal;
+}
+
+.wpns-search-box .results .list-results li .post-information .metabox {
+  font-size: 13px;
+}

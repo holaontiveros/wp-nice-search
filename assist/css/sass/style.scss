@@ -61,22 +61,31 @@
 /* list results */
 .wpns-search-box {
 	.results {
-		ul {
+		padding: 10px;
+		h4 {
+		    border-bottom: 1px solid #ccc;
+		    padding-bottom: 10px;
+		}
+		.list-results {
 			padding: 0;
 			margin: 0;
 			li {
 				list-style: none;
 				clear: both;
+				width: 100%;
+				display: table;
+				margin-bottom: 5px;
 
 				.thumbnail {
 					vertical-align: middle;
 					margin-right: 5px;
 					float: left;
 				}
-			}
-			&.imagelist {
 				.post-information {
-					padding-top: 10px;
+					line-height: normal;
+					.metabox {
+						font-size: 13px;
+					}
 				}
 			}
 		}	

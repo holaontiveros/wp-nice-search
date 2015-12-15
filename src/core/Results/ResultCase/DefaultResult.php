@@ -19,6 +19,10 @@ class DefaultResult extends Results
 	public function createList()
 	{
 		$lists = '';
+		$lists .= apply_filters(
+			'list_results_heading',
+			'<h4>Search Results:</h4>'
+		);
 		$post_ids = parent::getPosts();
 		if (empty($post_ids)) return $lists;
 		$lists .= '<ul>';

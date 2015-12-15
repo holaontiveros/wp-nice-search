@@ -7,24 +7,26 @@
 jQuery(document).ready(function($){
 	var $ = jQuery;
 
-	result_box = $('#wpns_results_box');
-	loading = $('#wpns_loading_search');
-	search_icon = $('#wpns_search_icon');
+	//result_box = $('#wpns_results_box');
+	//loading = $('#wpns_loading_search');
+	//search_icon = $('#wpns_search_icon');
 
 	// test code
-	$('#test_input').click(function(){
-		var data = {
-			action : 'get_results',
-		};
-		$.post(wpns_ajax_url.ajaxurl, data, function(response){
-			console.log(response);
-			$('.results').empty();
-			$('.results').append(response);
-		});
+/*	$('#test_input').(function(){
+
+	});*/
+
+	var data = {
+		action : 'get_results',
+	};
+	$.post(wpns_ajax_url.ajaxurl, data, function(response){
+		//console.log(response);
+		$('.results').empty();
+		$('.results').append(response);
 	});
 
     $("#test_input").keyup(function(){
-    	loading.show();
+    	//loading.show();
         // Retrieve the input field text and reset the count to zero
         var filter = $(this).val();
  
