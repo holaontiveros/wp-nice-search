@@ -16,4 +16,3 @@ $GLOBALS['wp_rewrite'] = new \WP_Rewrite();
 new WpnsAdmin;
 new WpnsFormShortcode;
 new WpnsRegisterScript;
-

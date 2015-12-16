@@ -1,5 +1,4 @@
 <?php
-
 namespace core;
 
 /**
@@ -23,12 +22,12 @@ class WpnsRegisterScript {
 		// enable ajax for logged-in user
 		add_action(
 			'wp_ajax_get_results',
-			array(&$this, 'TestData')
+			array($this, 'TestData')
 		);
 		// enabled ajax for visitors user
 		add_action(
 			'wp_ajax_nopriv_get_results',
-			array(&$this, 'TestData')
+			array($this, 'TestData')
 		);
 	}
 
