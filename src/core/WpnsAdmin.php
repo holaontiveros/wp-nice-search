@@ -234,17 +234,17 @@ class WpnsAdmin
 		?>
 		<fieldset>
 			<label>
-				<input type="checkbox" name="wpns_options[wpns_orderby_title]" <?php echo ($this->settings['wpns_orderby_title'] == 'on') ? 'checked' : ''; ?> />
+				<input type="checkbox" name="wpns_options[wpns_orderby_title]" <?php checked($this->settings['wpns_orderby_title'], 'on'); ?> />
 				<i>Title</i>
 			</label>
 			<br>
 			<label>
-				<input type="checkbox" name="wpns_options[wpns_orderby_date]" <?php echo ($this->settings['wpns_orderby_date'] == 'on') ? 'checked' : ''; ?> />
+				<input type="checkbox" name="wpns_options[wpns_orderby_date]" <?php checked($this->settings['wpns_orderby_date'], 'on'); ?> />
 				<i>Date</i>
 			</label>
 			<br>
 			<label>
-				<input type="checkbox" name="wpns_options[wpns_orderby_author]" <?php echo ($this->settings['wpns_orderby_author'] == 'on') ? 'checked' : ''; ?> />
+				<input type="checkbox" name="wpns_options[wpns_orderby_author]" <?php checked($this->settings['wpns_orderby_author'], 'on'); ?> />
 				<i>Author</i>
 			</label>
 		</fieldset>
@@ -345,39 +345,22 @@ class WpnsAdmin
 		echo '<p>* To use this shortcode in template file: <code>&lt;?php echo do_shortcode("[wpns_search_form]"); ?&gt;</code></p>';
 		echo '<p>* Shortcode Options: </p>';
 		echo '<ul style="margin-left:20px;">';
-		echo '<li><label><b>only_search </b>(optional): This option determine place searching. ( Ex: <code>[wpns_search_form only_search="page"]</code> This shortcode only search in the pages)</label></li>';
+		echo '<li><label><b>only_search </b>(optional): This option determine place searching. ( Example: <code>[wpns_search_form only_search="page"]</code> This shortcode only search in the pages)</label></li>';
 		echo '</ul>';
 	}
 
 	/**
 	 * Validation options callback function
-	 * @param mix $input Holds values of option fields
-	 *
-	 * @return mix $valid
+	 * @param array $input Holds values of option fields
+	 * @return array $valid
 	 */
 	public function wpns_validate_options($input)
 	{
-
-		$valid = array();
-		//$valid['wpns_placeholder'] = preg_replace( '/[^a-zA-Z. ]/', '', $input['wpns_placeholder'] );
-		$valid['wpns_placeholder'] = $input['wpns_placeholder'];
-
-		// checkbox value
-		$valid['wpns_in_all'] = $input['wpns_in_all'];
-		$valid['wpns_in_post'] = $input['wpns_in_post'];
-		$valid['wpns_in_page'] = $input['wpns_in_page'];
-		//$valid['wpns_in_category'] = $input['wpns_in_category'];
-		$valid['wpns_in_custom_post_type'] = $input['wpns_in_custom_post_type'];
-		$valid['wpns_items_featured'] = $input['wpns_items_featured'];
-		$valid['chk_items_meta'] = $input['chk_items_meta'];
-
-		return $valid;
 	}
 
 	/**
 	 * Get option values from database
 	 * @var string $name Holds option name
-	 *
 	 * @return array $options
 	 */
 	public function wpns_get_options($name = '')

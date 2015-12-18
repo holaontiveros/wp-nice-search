@@ -1,5 +1,4 @@
 <?php
-
 namespace core\Results;
 
 /**
@@ -74,7 +73,7 @@ abstract class Results
 	}
 	
 	/**
-	 * 
+	 * @param int $author_id
 	 */
 	public function getAuthor($author_id)
 	{
@@ -96,7 +95,9 @@ abstract class Results
 	}
 	
 	/**
-	 * get terms
+	 * get terms of post
+	 * @param object $post_obj
+	 * @param array $termarr
 	 */
 	public function getTerms($post_obj)
 	{
@@ -124,7 +125,7 @@ abstract class Results
 	}
 	
 	/**
-	 * 
+	 * @return string $orderby
 	 */
 	public function getOrderBy()
 	{
@@ -190,6 +191,7 @@ abstract class Results
 
 	/**
 	 * get custom post type name
+	 * @retun array $cpts
 	 */
 	public function getListCpts()
 	{
@@ -226,7 +228,7 @@ abstract class Results
 	
 	/**
 	 * markup wrap results list
-	 * 
+	 * @return array $wrap_default
 	 */
 	public function resultsWrap()
 	{

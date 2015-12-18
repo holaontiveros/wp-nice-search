@@ -47,20 +47,13 @@ class FullResult extends Results
 				$no_image = WPNS_URL . 'assist/images/no_photo.jpg';
 				$post_image_url = apply_filters('no_image', $no_image);
 			}
-
-			//var_dump(add_filter('format_date', array($this, 'callbackFormatDate')));
+			// get terms
+			$post_terms = $this->getTerms($post_obj);
+			// get author
+			$author = $this->getAuthor($post_obj->post_author);
+			// get date
 			$format = 'd M, Y';
 			$post_date = get_the_date(apply_filters('format_date', $format), $id);
-
-			$post_author = get_user_meta($post_obj->post_author);
-			$first_name = $post_author['first_name'][0];
-			$last_name = $post_author['last_name'][0];
-			if ($first_name == '' && $last_name == '') {
-				$post_author_name = $post_author['nickname'][0];
-			} else {
-				$post_author_name = $first_name . ' ' . $last_name;
-			}
-			//$post_terms = $this->getTerms($id);
 
 			// create the list results
 			$lists .= '<li>';
@@ -68,8 +61,13 @@ class FullResult extends Results
 			$lists .= '<div class="post-information">';
 				$lists .= '<a href="' . $post_url . '">' . $post_title . '</a>';
 				$lists .= '<div class="metabox">';
-				$lists .= '<span class="post-date">' . $post_date . '</span>';
-				$lists .= '<span class="post-author"> ' . $post_author_name . '</span>';
+				$lists .= '<span class="post-date"><i class="fa fa-circle"></i>' . $post_date . '</span>';
+				if (!empty($post_terms)) {
+					$lists .= '<span class="post-term"><i class="fa fa-circle"></i>';
+					$lists .= @implode(', ', $post_terms);
+					$lists .= '</span>';
+				}
+				$lists .= '<span class="post-author"><i class="fa fa-circle"></i><a href="' . $author['author_url'] . '">' . $author['author_nicename'] . '</a></span>';
 				$lists .= '</div>';
 			$lists .= '</div>';
 			$lists .= '</li>';

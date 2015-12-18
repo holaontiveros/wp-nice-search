@@ -1,3 +1,5 @@
 .separater {
     border-top: 1px solid #ccc;
 }
+.dashicons-admin-settings { font-size: 23px; line-height: 29px; }
+.sidebar { background-color: #fff;padding: 10px;width:30%;float:left;}
