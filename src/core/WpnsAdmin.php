@@ -1,5 +1,4 @@
 <?php
-
 namespace core;
 
 /**
@@ -89,6 +88,12 @@ class WpnsAdmin
 			array('jquery'),
 			WPNS_PLUGIN_VER
 		);
+		wp_enqueue_style(
+			'wpns-admin-style',
+			WPNS_URL . 'assist/css/admin.css',
+			array(),
+			WPNS_PLUGIN_VER
+		);
 	}
 
 	/**
@@ -119,69 +124,170 @@ class WpnsAdmin
 	public function wpns_admin_init() {
 		register_setting(
 			'wpns_options',
-			'wpns_options',
-			array(&$this, 'wpns_validate_options')
+			'wpns_options'
 		);
-
+	
+		// section where
 		add_settings_section(
-			'wpns_group_1',
+			'wpns_group_where',
 			'',
-			array(&$this, 'wpns_section_1'),
+			array(&$this, 'wpnsSectionWhere'),
 			$this->menu_slug
 		);
 		add_settings_field(
-			'wpns_checkbox',
+			'wpns_where',
 			'Search In',
-			array(&$this, 'wpns_setting_checkbox' ),
+			array($this, 'wpnsInputWhere'),
 			$this->menu_slug,
-			'wpns_group_1'
+			'wpns_group_where'
+		);
+		
+		// section orderby
+		add_settings_section(
+			'wpns_group_orderby',
+			'',
+			array(&$this, 'wpnsSectionOrderBy'),
+			$this->menu_slug
 		);
 		add_settings_field(
-			'wpns_fields_group_3',
-			'Options',
-			array(&$this, 'wpns_setting_group_3'),
+			'wpns_orderby',
+			'Order By Field',
+			array(&$this, 'wpnsInputOrderBy'),
 			$this->menu_slug,
-			'wpns_group_1'
+			'wpns_group_orderby'
+		);
+		add_settings_field(
+			'wpns_order',
+			'Order',
+			array(&$this, 'wpnsInputOrder'),
+			$this->menu_slug,
+			'wpns_group_orderby'
 		);
 
-		add_settings_section( 'wpns_group_2', '', array( &$this, 'wpns_section_2'), $this->menu_slug );
-		add_settings_field( 'wpns_text', 'Placeholder Text', array( &$this, 'wpns_setting_text' ), $this->menu_slug, 'wpns_group_2' );
+		// layout
+		add_settings_section(
+			'wpns_group_layout',
+			'',
+			array(&$this, 'wpnsSectionLayout'),
+			$this->menu_slug
+		);
+		add_settings_field(
+			'wpns_layout',
+			'Layout',
+			array(&$this, 'wpnsInputLayout'),
+			$this->menu_slug,
+			'wpns_group_layout'
+		);
 
-		add_settings_section( 'wpns_group_3', '', array( &$this, 'wpns_section_3'), $this->menu_slug );
+		// form design
+		add_settings_section(
+			'wpns_group_form',
+			'',
+			array($this, 'wpnsSectionFormDesign'),
+			$this->menu_slug
+		);
+		add_settings_field(
+			'wpns_form_placeholder',
+			'Placeholder Text',
+			array($this, 'wpnsInputFormDesign'),
+			$this->menu_slug,
+			'wpns_group_form'
+		);
+		
+		// document section
+		add_settings_section(
+			'wpns_group_doc',
+			'',
+			array($this, 'wpnsSectionDoc'),
+			$this->menu_slug
+		);
 	}
 
 	/**
 	 * Draw the section header group 1
 	 */
-	public function wpns_section_1()
+	public function wpnsSectionWhere()
 	{
-		echo '<h3>Global settings</h3>';
+		echo '<h3>Where do you want to search?</h3>';
+	}
+
+	public function wpnsSectionOrderBy()
+	{
+		echo '<h3>Sort retrieved results base on</h3>';
+	}
+	
+	public function wpnsSectionLayout()
+	{
+		echo '<h3>Choose the layout for the list results</h3>';
+	}
+	
+	public function wpnsSectionFormDesign()
+	{
+		echo '<h3>Change Form Components</h3>';
+	}
+
+	/**
+	 * 
+	 */
+	public function wpnsInputOrderBy()
+	{
+		?>
+		<fieldset>
+			<label>
+				<input type="checkbox" name="wpns_options[wpns_orderby_title]" <?php echo ($this->settings['wpns_orderby_title'] == 'on') ? 'checked' : ''; ?> />
+				<i>Title</i>
+			</label>
+			<br>
+			<label>
+				<input type="checkbox" name="wpns_options[wpns_orderby_date]" <?php echo ($this->settings['wpns_orderby_date'] == 'on') ? 'checked' : ''; ?> />
+				<i>Date</i>
+			</label>
+			<br>
+			<label>
+				<input type="checkbox" name="wpns_options[wpns_orderby_author]" <?php echo ($this->settings['wpns_orderby_author'] == 'on') ? 'checked' : ''; ?> />
+				<i>Author</i>
+			</label>
+		</fieldset>
+		<?php		
+	}
+
+	/**
+	 * 
+	 */
+	public function wpnsInputOrder()
+	{
+		?>
+		<select name="wpns_options[wpns_order]">
+			<option value="DESC" <?php selected($this->settings['wpns_order'], 'DESC'); ?>>DESC</option>
+			<option value="ASC" <?php selected($this->settings['wpns_order'], 'ASC'); ?>>ASC</option>
+		</select>
+		<?php
 	}
 
 	/**
 	 * Display and fill the field group 1
 	 */
-	public function wpns_setting_checkbox()
+	public function wpnsInputWhere()
 	{
 		?>
 		<fieldset>
 			<label>
-				<input type="checkbox" id="chk_all" name="wpns_options[wpns_in_all]" <?php echo ($this->settings['wpns_in_all'] == 'on') ? 'checked' : ''; ?> />
+				<input type="checkbox" id="chk_all" name="wpns_options[wpns_in_all]" <?php checked($this->settings['wpns_in_all'], 'on'); ?> />
 				<i>All</i>
 			</label>
 			<br>
 			<label>
-				<input type="checkbox" class="chk_items" name="wpns_options[wpns_in_post]" <?php echo ($this->settings['wpns_in_post'] == 'on') ? 'checked' : ''; ?> />
+				<input type="checkbox" class="chk_items" name="wpns_options[wpns_in_post]" <?php checked($this->settings['wpns_in_post'], 'on'); ?> />
 				<i>Post</i>
 			</label>
 			<br>
 			<label>
-				<input type="checkbox" class="chk_items" name="wpns_options[wpns_in_page]" <?php echo ($this->settings['wpns_in_page'] == 'on') ? 'checked' : ''; ?> />
+				<input type="checkbox" class="chk_items" name="wpns_options[wpns_in_page]" <?php checked($this->settings['wpns_in_page'], 'on'); ?> />
 				<i>Page</i>
 			</label>
 			<br>
 			<label>
-				<input type="checkbox" class="chk_items" name="wpns_options[wpns_in_custom_post_type]" <?php echo ($this->settings['wpns_in_custom_post_type'] == 'on') ? 'checked' : ''; ?> />
+				<input type="checkbox" class="chk_items" name="wpns_options[wpns_in_cpt]" <?php checked($this->settings['wpns_in_cpt'], 'on'); ?> />
 				<i>Custom post type</i>
 			</label>
 			<br>
@@ -200,7 +306,7 @@ class WpnsAdmin
 	/**
 	 * Display and fill the field group 2
 	 */
-	public function wpns_setting_text()
+	public function wpnsInputFormDesign()
 	{
 		// get option value from database
 		$text_string = $this->settings['wpns_placeholder'];
@@ -211,7 +317,7 @@ class WpnsAdmin
 	/**
 	 * Display and fill the field group 3
 	 */
-	public function wpns_setting_group_3()
+	public function wpnsInputLayout()
 	{
 		?>
 		<fieldset>
@@ -232,13 +338,14 @@ class WpnsAdmin
 	/**
 	 * Draw the section header group 2
 	 */
-	public function wpns_section_3()
+	public function wpnsSectionDoc()
 	{
+		echo '<p class="separater"></p>';
 		echo '<p>* Use this shortcode in content of the page or post or custom post type: <code>[wpns_search_form]</code></p>';
 		echo '<p>* To use this shortcode in template file: <code>&lt;?php echo do_shortcode("[wpns_search_form]"); ?&gt;</code></p>';
 		echo '<p>* Shortcode Options: </p>';
 		echo '<ul style="margin-left:20px;">';
-		echo '<li><label><b>only_search </b>(optional): TThis option determine place searching. ( Ex: <code>[wpns_search_form only_search="page"]</code> This shortcode only search in the pages)</label></li>';
+		echo '<li><label><b>only_search </b>(optional): This option determine place searching. ( Ex: <code>[wpns_search_form only_search="page"]</code> This shortcode only search in the pages)</label></li>';
 		echo '</ul>';
 	}
 

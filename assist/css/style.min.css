@@ -54,3 +54,12 @@
 .wpns-search-box .results .list-results li .post-information .metabox {
   font-size: 13px;
 }
+.post-author,
+.post-term{
+    padding-left: 10px;
+}
+.post-information .fa-circle {
+    font-size: 6px !important;
+    padding-right: 5px;
+    vertical-align: middle;
+}

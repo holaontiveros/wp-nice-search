@@ -24,7 +24,7 @@ class DefaultResult extends Results
 		$lists .= $list_style['heading_text'];
 		$lists .= '</' . $list_style['heading_tag'] .'>';
 		$post_ids = parent::getPosts();
-		if (empty($post_ids)) return $lists;
+		if (empty($post_ids)) return;
 		$lists .= '<ul>';
 		foreach ($post_ids as $id) {
 			$post_title = get_the_title($id);

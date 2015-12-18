@@ -21,15 +21,6 @@ abstract class Results
 	{
 		$this->settings = get_option('wpns_options');
 		$this->writeFile($this->createList());
-		$this->getSearchIn();
-
-	}
-
-	/**
-	 * hooks
-	 */
-	public function hooks()
-	{
 	}
 
 	/**
@@ -50,70 +41,151 @@ abstract class Results
 	 */
 	public function getPosts()
 	{
-		global $wpdb;
-		$posts = [];
-		$search_in = $this->getSearchIn();
-		$where = "post_type IN ($search_in) AND post_status = 'publish'";
-		$sql = "SELECT ID FROM $wpdb->posts WHERE $where";
-		$results = $wpdb->get_results($sql);
+		$where = $this->getPostTypes();
+		$orderby = $this->getOrderBy();
+		$order = $this->getOrder();
 
-		if (empty($results)) return $posts;
+		$args = array(
+			'post_type' => $where,
+			'posts_per_page' => -1,
+			'orderby' => $orderby,
+			'order' => $order
+		);
 
-		foreach ($results as $obj) {
-			$posts[] = $obj->ID;
+		$loop = new \WP_Query($args);
+		
+		if ($loop->have_posts()) {
+			while ($loop->have_posts()) {
+				$loop->the_post();
+				$posts[] = get_the_ID();
+			}
 		}
 
 		return $posts;
 	}
+	
+	/**
+	 * 
+	 */
+	public function getOrder()
+	{
+		$settings = $this->settings;
+		return $settings['wpns_order'];
+	}
+	
+	/**
+	 * 
+	 */
+	public function getAuthor($author_id)
+	{
+		//$post_obj->post_author
+		$author = array();
+		$author_url = get_author_posts_url($author_id);
+		$post_author = get_user_meta($author_id);
+		$first_name = $post_author['first_name'][0];
+		$last_name = $post_author['last_name'][0];
+		if ($first_name == '' && $last_name == '') {
+			$post_author_name = $post_author['nickname'][0];
+		} else {
+			$post_author_name = $first_name . ' ' . $last_name;
+		}
+		$author['author_url'] = $author_url;
+		$author['author_nicename'] = $post_author_name;
+		
+		return $author;
+	}
+	
+	/**
+	 * get terms
+	 */
+	public function getTerms($post_obj)
+	{
+		$taxonomies = get_object_taxonomies($post_obj);
+		foreach ($taxonomies as $key => $value) {
+			if ($value == 'post_format' || $value == 'post_tag') {
+				unset($taxonomies[$key]);
+			}
+		}
+		
+		//$terms = array();
+		foreach ($taxonomies as $key => $taxonomy) {
+			$terms = get_terms($taxonomy);
+			foreach ($terms as $term) {
+				$term_id = $term->term_id;
+				$term_name = $term->name;
+				$term_url = get_term_link($term_id);
+				$term_link = '<a href="' . $term_url . '">' . $term_name . '</a>';
+				$termarr[] = $term_link;
+			}
+		}
+		
+		return $termarr;
+		//var_dump($taxonomy);
+	}
+	
+	/**
+	 * 
+	 */
+	public function getOrderBy()
+	{
+		$orderby = array();
+		$settings = $this->settings;
+		if ($settings['wpns_orderby_title']) {
+			$orderby[] = 'title';
+		}
+		if ($settings['wpns_orderby_date']) {
+			$orderby[] = 'date';
+		}
+		if ($settings['wpns_orderby_author']) {
+			$orderby[] = 'author';
+		}
+		if (empty($orderby)) return '';
+		return implode(' ', $orderby);
+	}
 
 	/**
-	 * create where we search in database
-	 * @return string $search
+	 * This method gets post types that selected in settings page
+	 * @return array $post_types
 	 */
-	public function getSearchIn()
+	public function getPostTypes()
 	{
-		$search = [];
-		//var_dump($this->settings);
-		if ($this->settings['wpns_only_search'] != '') {
-			$specific = $this->settings['wpns_only_search'];
-			$search[] = "'$specific'";
+		$post_types = array();
+		$settings = $this->settings;
+		if ($settings['wpns_only_search'] != '') {
+			$post_types[] = $settings['wpns_only_search'];
 		} else {
 			$cpts = $this->getListCpts();
-			if ($this->settings['wpns_in_all'] == 'on') {
-				$search[] = "'post'";
-				$search[] = "'page'";
+			if ($settings['wpns_in_all'] == 'on') {
+				$post_types[] = 'post';
+				$post_types[] = 'page';
 				foreach ($cpts as $value) {
-					$search[] = "'$value'";
+					$post_types[] = $value;
 				}
-			} elseif ($this->settings['wpns_in_post'] == 'on' && $this->settings['wpns_in_page'] == 'on') {
-				$search[] = "'post'";
-				$search[] = "'page'";
-			} elseif ($this->settings['wpns_in_post'] == 'on' && $this->settings['wpns_in_custom_post_type'] == 'on') {
-				$search[] = "'post'";
+			} elseif ($settings['wpns_in_post'] == 'on' && $settings['wpns_in_page'] == 'on') {
+				$post_types[] = 'post';
+				$post_types[] = 'page';
+			} elseif ($settings['wpns_in_post'] == 'on' && $settings['wpns_in_cpt'] == 'on') {
+				$post_types = 'post';
 				foreach ($cpts as $value) {
-					$search[] = "'$value'";
+					$post_types[] = $value;
 				}
-			} elseif ($this->settings['wpns_in_page'] == 'on' && $this->settings['wpns_in_custom_post_type'] == 'on') {
-				$search[] = "'page'";
+			} elseif ($settings['wpns_in_page'] == 'on' && $settings['wpns_in_cpt'] == 'on') {
+				$post_types[] = 'page';
 				foreach ($cpts as $value) {
-					$search[] = "'$value'";
+					$post_types[] = $value;
 				}
-			} elseif ($this->settings['wpns_in_post'] == 'on') {
-				$search[] = "'page'";
-			} elseif ($this->settings['wpns_in_page'] == 'on') {
-				$search[] = "'page'";
-			} elseif ($this->settings['wpns_in_custom_post_type'] == 'on') {
+			} elseif ($settings['wpns_in_post'] == 'on') {
+				$post_types[] = 'post';
+			} elseif ($settings['wpns_in_page'] == 'on') {
+				$post_types[] = 'page';
+			} elseif ($settings['wpns_in_cpt'] == 'on') {
 				foreach ($cpts as $value) {
-					$search[] = "'$value'";
+					$post_types[] = $value;
 				}
 			}
 		}
-		//var_dump($search);
-		if (empty($search)) {
-			$search[] = "'post'";
-		}
 
-		return implode(',', $search);
+		return $post_types;
 	}
 
 	/**
@@ -121,8 +193,8 @@ abstract class Results
 	 */
 	public function getListCpts()
 	{
-		global $wpdb;
-		$cpts = [];
+		$types = get_post_types(array('_builtin' => false));
+		$cpts = array();
 		$cpts_except = [
 			'slider',
 			'_pods_field',
@@ -135,14 +207,6 @@ abstract class Results
 			'product_variation',
 			'revision',
 		];
-
-		$sql = "SELECT DISTINCT post_type FROM $wpdb->posts";
-		$results = $wpdb->get_results($sql);
-
-		foreach ($results as $type) {
-			$types[] = $type->post_type;
-		}
-
 		$cpts = array_diff($types, $cpts_except);
 		return $cpts;
 	}
@@ -153,32 +217,6 @@ abstract class Results
 	public function getOptions()
 	{
 		return $this->settings;
-	}
-
-	/**
-	 * get terms of post
-	 * @TODO get_object_taxonomies() is not working
-	 *
-	 * @param int $post_id
-	 */
-	public function getTerms($post_id)
-	{
-		$taxonomies_except = [
-			'post_tag',
-			'post_format'
-		];
-		$terms = [];
-		$post_id = (int)$post_id;
-		$post_obj = get_post($post_id);
-		$post_type = $post_obj->post_type;
-		$taxonomies = get_object_taxonomies($post_type);
-		//$taxonomies = array_diff($taxonomies, $taxonomies_except);
-
-		foreach ($taxonomies as $taxonomy) {
-			$terms[] = get_the_terms($post_id, $taxonomy);
-		}
-
-		var_dump($taxonomies);
 	}
 
 	/**
