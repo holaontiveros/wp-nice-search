@@ -156,13 +156,6 @@ class WpnsAdmin
 			$this->menu_slug,
 			'wpns_group_orderby'
 		);
-		add_settings_field(
-			'wpns_order',
-			'Order',
-			array(&$this, 'wpnsInputOrder'),
-			$this->menu_slug,
-			'wpns_group_orderby'
-		);
 
 		// layout
 		add_settings_section(
@@ -232,36 +225,56 @@ class WpnsAdmin
 	public function wpnsInputOrderBy()
 	{
 		?>
-		<fieldset>
+		<fieldset class="has-group">
 			<label>
 				<input type="checkbox" name="wpns_options[wpns_orderby_title]" <?php checked($this->settings['wpns_orderby_title'], 'on'); ?> />
 				<i>Title</i>
+				<select name="wpns_options[wpns_title_pri]">
+					<option value="1" <?php selected($this->settings['wpns_title_pri'], '1'); ?>>1</option>
+					<option value="2" <?php selected($this->settings['wpns_title_pri'], '2'); ?>>2</option>
+					<option value="3" <?php selected($this->settings['wpns_title_pri'], '3'); ?>>3</option>
+				</select>
+				<i>Priority</i>
+				<select name="wpns_options[wpns_title_order]">
+					<option value="DESC" <?php selected($this->settings['wpns_title_order'], 'DESC'); ?>>DESC</option>
+					<option value="ASC" <?php selected($this->settings['wpns_title_order'], 'ASC'); ?>>ASC</option>
+				</select>
+				<i>Order</i>
 			</label>
 			<br>
 			<label>
 				<input type="checkbox" name="wpns_options[wpns_orderby_date]" <?php checked($this->settings['wpns_orderby_date'], 'on'); ?> />
 				<i>Date</i>
+				<select name="wpns_options[wpns_date_pri]">
+					<option value="1" <?php selected($this->settings['wpns_date_pri'], '1'); ?>>1</option>
+					<option value="2" <?php selected($this->settings['wpns_date_pri'], '2'); ?>>2</option>
+					<option value="3" <?php selected($this->settings['wpns_date_pri'], '3'); ?>>3</option>
+				</select>
+				<i>Priority</i>
+				<select name="wpns_options[wpns_date_order]">
+					<option value="DESC" <?php selected($this->settings['wpns_date_order'], 'DESC'); ?>>DESC</option>
+					<option value="ASC" <?php selected($this->settings['wpns_date_order'], 'ASC'); ?>>ASC</option>
+				</select>
+				<i>Order</i>
 			</label>
 			<br>
 			<label>
 				<input type="checkbox" name="wpns_options[wpns_orderby_author]" <?php checked($this->settings['wpns_orderby_author'], 'on'); ?> />
 				<i>Author</i>
+				<select name="wpns_options[wpns_author_pri]">
+					<option value="1" <?php selected($this->settings['wpns_author_pri'], '1'); ?>>1</option>
+					<option value="2" <?php selected($this->settings['wpns_author_pri'], '2'); ?>>2</option>
+					<option value="3" <?php selected($this->settings['wpns_author_pri'], '3'); ?>>3</option>
+				</select>
+				<i>Priority</i>
+				<select name="wpns_options[wpns_author_order]">
+					<option value="DESC" <?php selected($this->settings['wpns_author_order'], 'DESC'); ?>>DESC</option>
+					<option value="ASC" <?php selected($this->settings['wpns_author_order'], 'ASC'); ?>>ASC</option>
+				</select>
+				<i>Order</i>
 			</label>
 		</fieldset>
 		<?php		
-	}
-
-	/**
-	 * 
-	 */
-	public function wpnsInputOrder()
-	{
-		?>
-		<select name="wpns_options[wpns_order]">
-			<option value="DESC" <?php selected($this->settings['wpns_order'], 'DESC'); ?>>DESC</option>
-			<option value="ASC" <?php selected($this->settings['wpns_order'], 'ASC'); ?>>ASC</option>
-		</select>
-		<?php
 	}
 
 	/**

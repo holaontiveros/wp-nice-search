@@ -42,6 +42,7 @@ abstract class Results
 	{
 		$where = $this->getPostTypes();
 		$orderby = $this->getOrderBy();
+		//$orderby = array('title' => 'DESC', 'author' => 'ASC');
 		$order = $this->getOrder();
 
 		$args = array(
@@ -121,7 +122,6 @@ abstract class Results
 		}
 		
 		return $termarr;
-		//var_dump($taxonomy);
 	}
 	
 	/**
@@ -131,17 +131,20 @@ abstract class Results
 	{
 		$orderby = array();
 		$settings = $this->settings;
-		if ($settings['wpns_orderby_title']) {
-			$orderby[] = 'title';
-		}
-		if ($settings['wpns_orderby_date']) {
-			$orderby[] = 'date';
-		}
-		if ($settings['wpns_orderby_author']) {
-			$orderby[] = 'author';
+		
+		$priority = array(
+			'title' => $settings['wpns_title_pri'],
+			'date' => $settings['wpns_date_pri'],
+			'author' => $settings['wpns_author_pri']
+		);
+		asort($priority);
+		foreach ($priority as $key => $value) {
+			if ($settings['wpns_orderby_' . $key] == 'on') {
+				$orderby[$key] = $settings['wpns_' . $key . '_order'];
+			}
 		}
 		if (empty($orderby)) return '';
-		return implode(' ', $orderby);
+		return $orderby;
 	}
 
 	/**
