@@ -65,10 +65,10 @@ class FullResult extends Results
 			);
 
 			// create the list results
-			$lists .= '<li>';
+			$lists .= '<li class="post-row">';
 			$lists .= '<img class="thumbnail" src="' . $post_image_url . '" alt="" width=50 />';
 			$lists .= '<div class="post-information">';
-				$lists .= '<a href="' . $post_url . '">' . $post_title . '</a>';
+				$lists .= '<a class="post-title" href="' . $post_url . '">' . $post_title . '</a>';
 				$lists .= '<div class="metabox">';
 					$lists .= '<span class="post-date">' . $icons['icon_date'] . $post_date . '</span>';
 					if (!empty($post_terms)) {

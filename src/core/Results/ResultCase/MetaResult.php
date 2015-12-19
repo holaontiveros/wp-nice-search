@@ -58,8 +58,8 @@ class MetaResult extends Results
 				)
 			);
 			// create the list results
-			$lists .= '<li>';
-			$lists .= '<a href="' . $post_url . '">' . $post_title . '</a>';
+			$lists .= '<li class="post-row">';
+			$lists .= '<a class="post-title" href="' . $post_url . '">' . $post_title . '</a>';
 			$lists .= '<div class="post-information">';
 				$lists .= '<div class="metabox">';
 					$lists .= '<span class="post-date">' . $icons['icon_date'] . $post_date . '</span>';

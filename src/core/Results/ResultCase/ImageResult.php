@@ -39,10 +39,10 @@ class ImageResult extends Results
 				$post_image_url = apply_filters('no_image', $no_image);
 			}
 
-			$lists .= '<li>';
+			$lists .= '<li class="post-row">';
 				$lists .= '<img class="thumbnail" src="' . $post_image_url . '" alt="" width=50 />';
 				$lists .= '<div class="post-information">';
-					$lists .= '<a href="' . $post_url . '">' . $post_title . '</a>';
+					$lists .= '<a class="post-title" href="' . $post_url . '">' . $post_title . '</a>';
 				$lists .= '</div>';
 			$lists .= '</li>';
 		}

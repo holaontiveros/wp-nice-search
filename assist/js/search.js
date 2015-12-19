@@ -24,19 +24,18 @@ jQuery(document).ready(function($){
 		$('.results').empty();
 		$('.results').append(response);
 	});
-
+	
     $("#test_input").keyup(function(){
+    	var count = 0;
     	//loading.show();
         // Retrieve the input field text and reset the count to zero
         var filter = $(this).val();
- 
+        count = 0;
         // Loop through the comment list
-        $(".results li").each(function(){
- 
+        $(".post-title").each(function(){
             // If the list item does not contain the text phrase fade it out
             if ($(this).text().search(new RegExp(filter, "i")) < 0) {
-                $(this).fadeOut();
- 
+                $(this).parentsUntil($('.list-results')).fadeOut();
             // Show the list item if the phrase matches and increase the count by 1
             } else {
 		        if (filter == '') {
@@ -44,11 +43,12 @@ jQuery(document).ready(function($){
 		        } else {
 		        	$('.results').show();
 		        }
-                $(this).show();
+		        $(this).parentsUntil($('.list-results')).fadeIn();
+		        count++;
             }
         });
     });
-
+    
 	/* Disabled submit event of the form */
 	$('#test_form').submit(function(e){
 		e.preventDefault();
