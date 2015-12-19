@@ -26,13 +26,23 @@
 .wpns-search-box .results .list-results {
   padding: 0;
   margin: 0;
+  max-height: 400px;
+  overflow: auto;
+  height: 400px;
 }
 .wpns-search-box .results .list-results li {
   list-style: none;
   clear: both;
   width: 100%;
   display: table;
-  margin-bottom: 5px;
+  border-bottom: 1px dashed #ccc;
+}
+.wpns-search-box .results .list-results li:hover {
+  background-color: #f2f2f2;
+  transition: all 0.5s ease 0s;
+  -webkit-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
 }
 .wpns-search-box .results .list-results li .thumbnail {
   vertical-align: middle;
