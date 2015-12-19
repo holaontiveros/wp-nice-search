@@ -54,6 +54,15 @@ class FullResult extends Results
 			// get date
 			$format = 'd M, Y';
 			$post_date = get_the_date(apply_filters('format_date', $format), $id);
+			// icon array
+			$icons = apply_filters(
+				'metabox_icon',
+				array(
+					'icon_date' => 'fa fa-circle',
+					'icon_terms' => 'fa fa-circle',
+					'icon_author' => 'fa fa-circle'
+				)
+			);
 
 			// create the list results
 			$lists .= '<li>';
@@ -61,13 +70,13 @@ class FullResult extends Results
 			$lists .= '<div class="post-information">';
 				$lists .= '<a href="' . $post_url . '">' . $post_title . '</a>';
 				$lists .= '<div class="metabox">';
-				$lists .= '<span class="post-date"><i class="fa fa-circle"></i>' . $post_date . '</span>';
-				if (!empty($post_terms)) {
-					$lists .= '<span class="post-term"><i class="fa fa-circle"></i>';
-					$lists .= @implode(', ', $post_terms);
-					$lists .= '</span>';
-				}
-				$lists .= '<span class="post-author"><i class="fa fa-circle"></i><a href="' . $author['author_url'] . '">' . $author['author_nicename'] . '</a></span>';
+					$lists .= '<span class="post-date">' . $icons['icon_date'] . $post_date . '</span>';
+					if (!empty($post_terms)) {
+						$lists .= '<span class="post-term">' . $icons['icon_terms'];
+						$lists .= @implode(', ', $post_terms);
+						$lists .= '</span>';
+					}
+					$lists .= '<span class="post-author">' . $icons['icon_author'] . '<a href="' . $author['author_url'] . '">' . $author['author_nicename'] . '</a></span>';
 				$lists .= '</div>';
 			$lists .= '</div>';
 			$lists .= '</li>';

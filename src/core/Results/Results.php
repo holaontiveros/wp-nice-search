@@ -236,6 +236,6 @@ abstract class Results
 			'heading_tag' => 'h3',
 			'heading_text' => 'Search Results'
 		);
-		return apply_filters('results_list', $wrap_default);
+		return apply_filters('results_title', $wrap_default);
 	}
 }
