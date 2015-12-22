@@ -2,20 +2,16 @@
 /**
  * Plugin Name: WP Nice Search
  * Description: Live search for wordpress
- * Version: 1.0.6
+ * Version: 1.0.7
  * Author: Duy Nguyen
  * Author URI: duywp.com
  * License: GPL v2
  */
 
 define('WPNS_DIR', dirname(__FILE__));
-
 define('WPNS_URL', plugin_dir_url( __FILE__ ));
-
 define('WPNS_PLUGIN_VER', '1.0.7');
-
-define('WPNS_REQUIRE_VER', '3.9');
-
+define('WPNS_REQUIRE_VER', '4.0');
 require_once WPNS_DIR . '/src/init.php';
 
 register_activation_hook(__DIR__, 'wpnsCheckActivate');
@@ -26,19 +22,26 @@ register_activation_hook(__DIR__, 'wpnsCheckActivate');
 function wpnsCheckActivate()
 {
 	$default_settings = array(
-		// global options
+		//where
 		'wpns_in_all' => null,
 		'wpns_in_post' => 'on',
 		'wpns_in_page' => null,
-		//'wpns_in_category' => null,
 		'wpns_in_custom_post_type' => null,
+		//layout
 		'wpns_items_featured' => null,
-		'chk_items_meta' => null,
-
-		// options for form
+		'wpns_items_meta' => null,
+		//orderby & order
+		'wpns_orderby_title' => null,
+		'wpns_title_pri' => '2',
+		'wpns_title_order' => 'DESC',
+		'wpns_orderby_date' => 'on',
+		'wpns_date_pri' => '1',
+		'wpns_date_order' => 'DESC',
+		'wpns_orderby_author' => null,
+		'wpns_author_pri' => '3',
+		'wpns_author_order' => 'DESC',
+		//options for form
 		'wpns_placeholder' => 'Type your words here...',
-		//special options
-		'wpns_only_search' => '',
 	);
 
 	if (version_compare(get_bloginfo('version'), WPNS_REQUIRE_VER, '<')) {

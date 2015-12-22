@@ -1,18 +1,18 @@
 <?php
-
 namespace core\Results\ResultCase;
 
 use core\Results\Results as Results;
 
 /**
  * This class create a default list with title and icons
- * @package
+ * @package wpns
  * @since 1.0.6
  */
 class DefaultResult extends Results
 {
 	/**
 	 * Initiliaze
+	 * @since 1.0.7
 	 */
 	public function __construct($s = '')
 	{
@@ -33,11 +33,13 @@ class DefaultResult extends Results
 		$lists .= '</' . $list_style['heading_tag'] .'>';
 		$post_ids = parent::getPosts();
 		if (empty($post_ids)) return;
-		$lists .= '<ul>';
+		$lists .= '<ul class="list-results">';
 		foreach ($post_ids as $id) {
 			$post_title = get_the_title($id);
 			$post_url = get_permalink($id);
-			$lists .= '<li class="post-row"><a class="post-title" href="' . $post_url . '">' . $post_title . '</a></li>';
+			$lists .= '<li class="post-row">';
+			$lists .= '<a class="post-title" href="' . $post_url . '">';
+			$lists .= '<i class="fa fa-file-o"></i> ' . $post_title . '</a></li>';
 		}
 		$lists .= '</ul>';
 		return $lists;

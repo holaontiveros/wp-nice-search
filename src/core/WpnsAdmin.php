@@ -4,45 +4,59 @@ namespace core;
 /**
  * Create admin page and register script for plugin
  * @package wpns
- * @author Duy Nguyen
+ * @since 1.0.0
  */
 
 class WpnsAdmin
 {
 	/**
-	 * @var string $page_title Holds text title of plugin which displayed in browser bar
+	 * Holds text title of plugin which displayed in browser bar
+	 * @var string $page_title
 	 */
 	protected $page_title = 'Nice Search';
 
 	/**
-	 * @var string $menu_title Holds text which name of menu
+	 * Holds text which name of menu
+	 * @var string $menu_title
 	 */
 	protected $menu_title = 'Nice Search';
 
 	/**
-	 * @var string $capability The capability required for menu to be displayed to the user
+	 * The capability required for menu to be displayed to the user
+	 * @var string $capability
 	 */
 	protected $capability = 'manage_options';
 
 	/**
-	 * @var string $menu_slug A unique slug name to refer to plugin menu
+	 * An unique slug name to refer to plugin menu
+	 * @var string $menu_slug
 	 */
 	protected $menu_slug = 'wpns-nice-search-menu';
 
 	/**
-	 * @var array $settings A array holds default values and updated values
+	 * An array holds default values and updated values
+	 * @var array $settings
 	 */
 	protected $settings = array(
-		// global options
+		//where
 		'wpns_in_all' => null,
 		'wpns_in_post' => 'on',
 		'wpns_in_page' => null,
-		//'wpns_in_category' => null,
 		'wpns_in_custom_post_type' => null,
+		//layout
 		'wpns_items_featured' => null,
-		'chk_items_meta' => null,
-
-		// options for form
+		'wpns_items_meta' => null,
+		//orderby & order
+		'wpns_orderby_title' => null,
+		'wpns_title_pri' => '2',
+		'wpns_title_order' => 'DESC',
+		'wpns_orderby_date' => 'on',
+		'wpns_date_pri' => '1',
+		'wpns_date_order' => 'DESC',
+		'wpns_orderby_author' => null,
+		'wpns_author_pri' => '3',
+		'wpns_author_order' => 'DESC',
+		//options for form
 		'wpns_placeholder' => 'Type your words here...',
 	);
 
@@ -51,10 +65,10 @@ class WpnsAdmin
 	 */
 	public function __construct()
 	{
-		add_action('wp_enqueue_scripts', array(&$this, 'wpns_plugin_script'));
-		add_action('admin_enqueue_scripts', array(&$this, 'wpns_admin_script'));
-		add_action('admin_menu', array(&$this, 'wpns_add_plugin_page'));
-		add_action('admin_init', array(&$this, 'wpns_admin_init'));
+		add_action('wp_enqueue_scripts', array($this, 'wpns_plugin_script'));
+		add_action('admin_enqueue_scripts', array($this, 'wpns_admin_script'));
+		add_action('admin_menu', array($this, 'wpns_add_plugin_page'));
+		add_action('admin_init', array($this, 'wpns_admin_init'));
 		$this->wpns_get_options('wpns_options');
 	}
 
@@ -197,30 +211,44 @@ class WpnsAdmin
 	}
 
 	/**
-	 * Draw the section header group 1
+	 * Draw the where section
+	 * @since 1.0.7
 	 */
 	public function wpnsSectionWhere()
 	{
 		echo '<h3>Where do you want to search?</h3>';
 	}
-
+	
+	/**
+	 * Draw the orderby section
+	 * @since 1.0.7
+	 */
 	public function wpnsSectionOrderBy()
 	{
 		echo '<h3>Sort retrieved results base on</h3>';
 	}
 	
+	/**
+	 * Draw the layout section
+	 * @since 1.0.7
+	 */
 	public function wpnsSectionLayout()
 	{
 		echo '<h3>Choose the layout for the list results</h3>';
 	}
 	
+	/**
+	 * Draw the form design section
+	 * @since 1.0.7
+	 */
 	public function wpnsSectionFormDesign()
 	{
 		echo '<h3>Change Form Components</h3>';
 	}
 
 	/**
-	 * 
+	 * render fields in orderby section
+	 * @since 1.0.7
 	 */
 	public function wpnsInputOrderBy()
 	{
@@ -278,7 +306,8 @@ class WpnsAdmin
 	}
 
 	/**
-	 * Display and fill the field group 1
+	 * render fields in where section
+	 * @since 1.0.7
 	 */
 	public function wpnsInputWhere()
 	{
@@ -309,38 +338,31 @@ class WpnsAdmin
 	}
 
 	/**
-	 * Draw the section header group 2
-	 */
-	public function wpns_section_2()
-	{
-		echo '<h3>Form Design</h3>';
-	}
-
-	/**
-	 * Display and fill the field group 2
+	 * render fields in form design section
+	 * @since 1.0.5
 	 */
 	public function wpnsInputFormDesign()
 	{
 		// get option value from database
 		$text_string = $this->settings['wpns_placeholder'];
-		// echo the field
 		echo '<input type="text" id="wpns_placeholder" name="wpns_options[wpns_placeholder]" value="' . $text_string . '"/>';
 	}
 
 	/**
-	 * Display and fill the field group 3
+	 * render fields in Layout section
+	 * @since 1.0.1
 	 */
 	public function wpnsInputLayout()
 	{
 		?>
 		<fieldset>
 			<label>
-				<input type="checkbox" id="chk_items_featured" name="wpns_options[wpns_items_featured]" <?php echo ($this->settings['wpns_items_featured'] == 'on') ? 'checked' : ''; ?> />
+				<input type="checkbox" id="chk_items_featured" name="wpns_options[wpns_items_featured]" <?php checked($this->settings['wpns_items_featured'], 'on'); ?> />
 				<i>Display featured</i>
 			</label>
 			<br>
 			<label>
-				<input type="checkbox" class="chk_items_meta" name="wpns_options[chk_items_meta]" <?php echo ($this->settings['chk_items_meta'] == 'on') ? 'checked' : ''; ?> />
+				<input type="checkbox" class="wpns_items_meta" name="wpns_options[wpns_items_meta]" <?php checked($this->settings['wpns_items_meta'], 'on'); ?>/>
 				<i>Display meta section (Author, Date, Taxonomy)</i>
 			</label>
 			<br>
@@ -349,7 +371,8 @@ class WpnsAdmin
 	}
 
 	/**
-	 * Draw the section header group 2
+	 * Draw the document section
+	 * @since 1.0.6
 	 */
 	public function wpnsSectionDoc()
 	{
@@ -369,13 +392,12 @@ class WpnsAdmin
 	 * @param array $input Holds values of option fields
 	 * @return array $valid
 	 */
-	public function wpns_validate_options($input)
-	{
-	}
+	public function wpns_validate_options($input){}
 
 	/**
 	 * Get option values from database
-	 * @var string $name Holds option name
+	 * @param string $name Holds option name
+	 * @since 1.0.5
 	 * @return array $options
 	 */
 	public function wpns_get_options($name = '')

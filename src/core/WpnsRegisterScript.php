@@ -8,13 +8,14 @@ use core\Results\ResultCase\FullResult as FullResult;
 
 /**
  * Register script for ajax script and handle request search ajax
- * 
- * @since 1.0.0
+ * @package wpns
  * @author Duy Nguyen
+ * @since 1.0.0
  */
 class WpnsRegisterScript {
 	/**
 	 * Initiliaze
+	 * @since 1.0.1
 	 */
 	function __construct()
 	{
@@ -23,50 +24,48 @@ class WpnsRegisterScript {
 			array($this, 'wpns_register_script')
 		);
 
-		// test code
 		// enable ajax for logged-in user
 		add_action(
 			'wp_ajax_get_results',
-			array($this, 'TestData')
+			array($this, 'getDataAjax')
 		);
 		// enabled ajax for visitors user
 		add_action(
 			'wp_ajax_nopriv_get_results',
-			array($this, 'TestData')
+			array($this, 'getDataAjax')
 		);
 	}
 
-
-	public function TestData()
+	/**
+	 * callback method to get data from client request
+	 * @return void
+	 * @since 1.0.7
+	 */
+	public function getDataAjax()
 	{
 		$s = $_POST['s'];
 		$_SESSION['s'] = $s;
 		$only = $_POST['only'];
-		
 		$settings = get_option( 'wpns_options' );
 		$settings['wpns_only_search'] = $only;
 		update_option( 'wpns_options' , $settings);
-
 		if ($settings['wpns_items_featured'] == 'on' && $settings['chk_items_meta'] == 'on') {
 			$obj = new FullResult($s);
 		} elseif ($settings['chk_items_meta'] == 'on') {
-			$obj = new MetaResult;
+			$obj = new MetaResult($s);
 		} elseif ($settings['wpns_items_featured'] == 'on') {
 			$obj = new ImageResult($s);
 		} else {
 			$obj = new DefaultResult($s);
 		}
-		
-		// $path = WPNS_DIR . '/src/templates/ListResults.php';
-		// $data = file_get_contents($path);
 		$data = $obj->createList();
 		echo $data;
 		wp_die();
 	}
 
-
 	/**
 	 * Add script for ajax request
+	 * @since 1.0.1
 	 */
 	public function wpns_register_script()
 	{

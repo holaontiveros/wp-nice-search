@@ -5,17 +5,23 @@ use core\Results\Results as Results;
 
 /**
  * This class create a default list with title and icons
- * @package wp-nice-search
+ * @package wpns
  * @since 1.0.7
  */
 class MetaResult extends Results
 {
+	/**
+	 * Initiliaze
+	 * @since 1.0.7
+	 */
+	public function __construct($s = '')
+	{
+		$this->keyword = $s;
+		parent::__construct();
+	}
 
 	/**
 	 * create a list results with featured image
-	 *
-	 * @TODO get terms for post
-	 *
 	 * @since 1.0.6
 	 * @uses getPosts()
 	 * @return string $lists

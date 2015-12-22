@@ -3,17 +3,17 @@
 namespace core\Results\ResultCase;
 
 use core\Results\Results as Results;
-use core\Filters\Filter as Filter;
 
 /**
  * This class create a default list with title and icons
- * @package
+ * @package wpns
  * @since 1.0.7
  */
 class FullResult extends Results
 {
 	/**
 	 * Initiliaze
+	 * @since 1.0.7
 	 */
 	public function __construct($s = '')
 	{

@@ -45,6 +45,7 @@
   width: 100%;
   display: table;
   border-bottom: 1px dashed #ccc;
+  padding: 5px 8px;
 }
 .wpns-search-box .results .list-results li:hover {
   background-color: #f2f2f2;

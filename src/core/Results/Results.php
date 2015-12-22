@@ -3,6 +3,7 @@ namespace core\Results;
 
 /**
  * Get data from database and format it base setting values
+ * @package wpns
  * @since 1.0.7
  */
 
@@ -24,21 +25,11 @@ abstract class Results
 	public function __construct()
 	{
 		$this->settings = get_option('wpns_options');
-		//$this->writeFile($this->createList());
-	}
-
-	/**
-	 * put content into file template
-	 * @param string $data
-	 */
-	public function writeFile($data)
-	{
-		$path = WPNS_DIR . '/src/templates/ListResults.php';
-		file_put_contents($path, $data);
 	}
 
 	/**
 	 * Get posts and return an array of post id
+	 * @since 1.0.7
 	 * @return array $posts
 	 */
 	public function getPosts()
