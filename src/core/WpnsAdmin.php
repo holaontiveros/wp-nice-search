@@ -358,7 +358,9 @@ class WpnsAdmin
 		echo '<p>* To use this shortcode in template file: <code>&lt;?php echo do_shortcode("[wpns_search_form]"); ?&gt;</code></p>';
 		echo '<p>* Shortcode Options: </p>';
 		echo '<ul style="margin-left:20px;">';
-		echo '<li><label><b>only_search </b>(optional): This option determine place searching. ( Example: <code>[wpns_search_form only_search="page"]</code> This shortcode only search in the pages)</label></li>';
+		echo '<li><label><b>only_search </b>(optional): This option determine place searching. ';
+		echo '( Example: <code>[wpns_search_form only_search="my_custom_post_type"]</code> ';
+		echo 'This shortcode only search in the custom post type named my_custom_post_type)</label></li>';
 		echo '</ul>';
 	}
 

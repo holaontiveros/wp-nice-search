@@ -51,27 +51,31 @@ jQuery(document).ready(function($){
     
 	// version 2 demo
     $("#test_input").keyup(function(){
+    	var onlyPlace = $(this).attr('data-only');
     	var searchIcon = $('#wpns_search_icon');
     	var loading = $('#wpns_loading_search');
-    	searchIcon.hide();
-    	loading.show();
-    	//console.log('ok');
     	var minLength = 1;
         // Retrieve the input field text and reset the count to zero
         var filter = $(this).val();
-        //console.log(filter);
+
         if (filter.length >= minLength) {
+    		searchIcon.hide();
+        	loading.show();
+        	console.log(filter);
 		   	var data = {
 				action : 'get_results',
-				s: filter
+				s: filter,
+				only: onlyPlace
 			};
 			$.post(wpns_ajax_url.ajaxurl, data, function(response){
-				console.log(response);
+				//console.log(response);
 				searchIcon.show();
 				loading.hide();
 				$('.results').empty();
-				$('.results').append(response).show();
+				$('.results').append(response).fadeIn(300);
 			});
+        } else {
+        	return;
         }
         // Loop through the comment list
         // $(".post-title").each(function(){

@@ -41,9 +41,10 @@ class WpnsRegisterScript {
 	{
 		$s = $_POST['s'];
 		$_SESSION['s'] = $s;
+		$only = $_POST['only'];
 		
 		$settings = get_option( 'wpns_options' );
-		$settings['wpns_only_search'] = $options['only_search'];
+		$settings['wpns_only_search'] = $only;
 		update_option( 'wpns_options' , $settings);
 
 		if ($settings['wpns_items_featured'] == 'on' && $settings['chk_items_meta'] == 'on') {
