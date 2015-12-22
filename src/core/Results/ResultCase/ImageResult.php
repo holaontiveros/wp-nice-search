@@ -11,7 +11,15 @@ use core\Results\Results as Results;
  */
 class ImageResult extends Results
 {
-
+	/**
+	 * Initiliaze
+	 */
+	public function __construct($s = '')
+	{
+		$this->keyword = $s;
+		parent::__construct();
+	}
+	
 	/**
 	 * create a list results with featured image
 	 * @return string $lists

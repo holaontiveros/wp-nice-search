@@ -1,6 +1,11 @@
 <?php
 namespace core;
 
+use core\Results\ResultCase\DefaultResult as DefaultResult;
+use core\Results\ResultCase\ImageResult as ImageResult;
+use core\Results\ResultCase\MetaResult as MetaResult;
+use core\Results\ResultCase\FullResult as FullResult;
+
 /**
  * Register script for ajax script and handle request search ajax
  * 
@@ -15,7 +20,7 @@ class WpnsRegisterScript {
 	{
 		add_action(
 			'template_redirect',
-			array(&$this, 'wpns_register_script')
+			array($this, 'wpns_register_script')
 		);
 
 		// test code
@@ -34,8 +39,26 @@ class WpnsRegisterScript {
 
 	public function TestData()
 	{
-		$path = WPNS_DIR . '/src/templates/ListResults.php';
-		$data = file_get_contents($path);
+		$s = $_POST['s'];
+		$_SESSION['s'] = $s;
+		
+		$settings = get_option( 'wpns_options' );
+		$settings['wpns_only_search'] = $options['only_search'];
+		update_option( 'wpns_options' , $settings);
+
+		if ($settings['wpns_items_featured'] == 'on' && $settings['chk_items_meta'] == 'on') {
+			$obj = new FullResult($s);
+		} elseif ($settings['chk_items_meta'] == 'on') {
+			$obj = new MetaResult;
+		} elseif ($settings['wpns_items_featured'] == 'on') {
+			$obj = new ImageResult($s);
+		} else {
+			$obj = new DefaultResult($s);
+		}
+		
+		// $path = WPNS_DIR . '/src/templates/ListResults.php';
+		// $data = file_get_contents($path);
+		$data = $obj->createList();
 		echo $data;
 		wp_die();
 	}

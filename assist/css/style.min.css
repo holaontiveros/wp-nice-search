@@ -6,6 +6,9 @@
 }
 .wpns-input-box input {
   box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: -moz-border-box;
   height: 40px;
   padding: 0 10px;
   width: 100%;
@@ -14,6 +17,12 @@
   position: absolute;
   top: 10px;
   right: 10px;
+}
+#wpns_loading_search {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
 }
 /* list results */
 .wpns-search-box .results {

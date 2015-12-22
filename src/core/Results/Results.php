@@ -12,14 +12,19 @@ abstract class Results
 	 * @var array $settings
 	 */
 	protected $settings;
-
+	
+	/**
+	 * @var string $keyword
+	 */
+	protected $keyword;
+	
 	/**
 	 * constructor
 	 */
 	public function __construct()
 	{
 		$this->settings = get_option('wpns_options');
-		$this->writeFile($this->createList());
+		//$this->writeFile($this->createList());
 	}
 
 	/**
@@ -34,22 +39,20 @@ abstract class Results
 
 	/**
 	 * Get posts and return an array of post id
-	 *
-	 * @param string $where
 	 * @return array $posts
 	 */
 	public function getPosts()
 	{
 		$where = $this->getPostTypes();
 		$orderby = $this->getOrderBy();
-		//$orderby = array('title' => 'DESC', 'author' => 'ASC');
 		$order = $this->getOrder();
 
 		$args = array(
 			'post_type' => $where,
 			'posts_per_page' => -1,
 			'orderby' => $orderby,
-			'order' => $order
+			'order' => $order,
+			's' => $this->keyword
 		);
 
 		$loop = new \WP_Query($args);
