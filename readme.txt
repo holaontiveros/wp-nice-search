@@ -2,9 +2,9 @@
 Contributors: duynguyen
 Donate link: http://duywp.com/
 Tags: search, ajax, jquery, form
-Requires at least: 3.9
+Requires at least: 4.0
 Tested up to: 4.2.2
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,6 +15,8 @@ Using Ajax to searching
 WP Nice Search plugin allows you searching in your site with ajax.
 
 = Features =
+* (NEW) Order results by title, author or publish date
+* (NEW) Update hook filters
 * Search using ajax to recieve results
 * Allow to display the featured icon, metapost info (author, date, taxonomy...)
 * Custom the search form
@@ -59,6 +61,11 @@ If you have any ideas or got any issues please send me an email to duyngha@gmail
 
 == Changelog ==
 
+= 1.0.7 =
+* Add: Arrange results by title, author, date (default is date)
+* Update: update some hook filters
+* Release Date 23/12/2015
+
 = 1.0.6 =
 * Fixed: Fixed css input issue.
 * Add: Add option only_search for shortcode form.
@@ -87,6 +94,11 @@ Publish plugin
 
 == Upgrade Notice ==
 
+= 1.0.7 =
+* Add: Arrange results by title, author, date (default is date)
+* Update: update some hook filters
+* Release Date 23/12/2015
+
 = 1.0.6 =
 * Fixed: Fixed css input issue.
 * Add: Add option only_search for shortcode form.
@@ -109,7 +121,6 @@ Publish plugin
 * Fixed: duplicate results list
 * Fixed: stop request ajax when people remove keyword or do not anything
 * Changed: style for results box and search icon
-
 
 = 1.0.0 =
 Publish plugin
