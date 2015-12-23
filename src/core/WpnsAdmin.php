@@ -37,28 +37,7 @@ class WpnsAdmin
 	 * An array holds default values and updated values
 	 * @var array $settings
 	 */
-	protected $settings = array(
-		//where
-		'wpns_in_all' => null,
-		'wpns_in_post' => 'on',
-		'wpns_in_page' => null,
-		'wpns_in_custom_post_type' => null,
-		//layout
-		'wpns_items_featured' => null,
-		'wpns_items_meta' => null,
-		//orderby & order
-		'wpns_orderby_title' => null,
-		'wpns_title_pri' => '2',
-		'wpns_title_order' => 'DESC',
-		'wpns_orderby_date' => 'on',
-		'wpns_date_pri' => '1',
-		'wpns_date_order' => 'DESC',
-		'wpns_orderby_author' => null,
-		'wpns_author_pri' => '3',
-		'wpns_author_order' => 'DESC',
-		//options for form
-		'wpns_placeholder' => 'Type your words here...',
-	);
+	protected $settings;
 
 	/**
 	 * Initiliaze
@@ -376,27 +355,29 @@ class WpnsAdmin
 	 */
 	public function wpnsSectionDoc()
 	{
-		echo '<p class="separater"></p>';
-		echo '<p>* Use this shortcode in content of the page or post or custom post type: <code>[wpns_search_form]</code></p>';
-		echo '<p>* To use this shortcode in template file: <code>&lt;?php echo do_shortcode("[wpns_search_form]"); ?&gt;</code></p>';
-		echo '<p>* Shortcode Options: </p>';
-		echo '<ul style="margin-left:20px;">';
-		echo '<li><label><b>only_search </b>(optional): This option determine place searching. ';
-		echo '( Example: <code>[wpns_search_form only_search="my_custom_post_type"]</code> ';
-		echo 'This shortcode only search in the custom post type named my_custom_post_type)</label></li>';
-		echo '</ul>';
+		$doc = '';
+		$doc .= '<p class="separater"></p>';
+		$doc .= '<p>* Use this shortcode in content of the page or post or custom post type: <code>[wpns_search_form]</code></p>';
+		$doc .= '<p>* To use this shortcode in template file: <code>&lt;?php echo do_shortcode("[wpns_search_form]"); ?&gt;</code></p>';
+		$doc .= '<p>* Shortcode Options: </p>';
+		$doc .= '<ul style="margin-left:20px;">';
+		$doc .= '<li><label><b>only_search </b>(optional): This option determine place searching. ';
+		$doc .= '( Example: <code>[wpns_search_form only_search="my_custom_post_type"]</code> ';
+		$doc .= 'This shortcode only search in the custom post type named my_custom_post_type)</label></li>';
+		$doc .= '</ul>';
+		echo $doc;
 	}
 
 	/**
 	 * Validation options callback function
-	 * @param array $input Holds values of option fields
+	 * @param array $input | Holds values of option fields
 	 * @return array $valid
 	 */
 	public function wpns_validate_options($input){}
 
 	/**
 	 * Get option values from database
-	 * @param string $name Holds option name
+	 * @param string $name | Holds option name
 	 * @since 1.0.5
 	 * @return array $options
 	 */
