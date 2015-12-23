@@ -65,6 +65,6 @@ function settingLink($links) {
 	$settings_link = '<a href="';
 	$settings_link .= esc_url(get_admin_url(null, 'options-general.php?page=wpns-nice-search-menu'));
 	$settings_link .= '">Settings</a>';
-   $links[] = $settings_link;
-   return $links;
+	$links[] = $settings_link;
+	return $links;
 }
