@@ -75,13 +75,13 @@ class FullResult extends Results
 			$lists .= '<div class="post-information">';
 				$lists .= '<a class="post-title" href="' . $post_url . '">' . $post_title . '</a>';
 				$lists .= '<div class="metabox">';
-					$lists .= '<span class="post-date">' . $icons['icon_date'] . $post_date . '</span>';
+					$lists .= '<span class="wpns-post-date">' . $icons['icon_date'] . $post_date . '</span>';
 					if (!empty($post_terms)) {
-						$lists .= '<span class="post-term">' . $icons['icon_terms'];
+						$lists .= '<span class="wpns-post-term">' . $icons['icon_terms'];
 						$lists .= @implode(', ', $post_terms);
 						$lists .= '</span>';
 					}
-					$lists .= '<span class="post-author">' . $icons['icon_author'] . '<a href="' . $author['author_url'] . '">' . $author['author_nicename'] . '</a></span>';
+					$lists .= '<span class="wpns-post-author">' . $icons['icon_author'] . '<a href="' . $author['author_url'] . '">' . $author['author_nicename'] . '</a></span>';
 				$lists .= '</div>';
 			$lists .= '</div>';
 			$lists .= '</li>';

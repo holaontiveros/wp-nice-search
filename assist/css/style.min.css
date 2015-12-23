@@ -74,9 +74,11 @@
 .wpns-search-box .results .list-results li .post-information .metabox {
   font-size: 13px;
 }
-.post-author,
-.post-term{
+.wpns-post-author,
+.wpns-post-term, 
+.wpns-post-date {
   padding-left: 10px;
+  display: inline-block;
 }
 .post-information .fa {
   padding-right: 5px;
