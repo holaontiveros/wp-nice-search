@@ -20,9 +20,13 @@
 }
 #wpns_loading_search {
     position: absolute;
-    right: 0;
-    top: 0;
-    width: 40px;
+    right: 5px;
+    top: 5px;
+    width: 30px;
+    height: 30px;
+}
+#wpns_search_icon::before {
+  font-size: 1.2em;
 }
 
 .wpns-input::-moz-placeholder { color:#999; }
