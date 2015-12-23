@@ -72,6 +72,9 @@
 .wpns-search-box .results .list-results li .post-information {
   line-height: normal;
 }
+.imagelist .post-information {
+    padding-top: 15px;
+}
 .wpns-search-box .results .list-results li .post-information .metabox {
   font-size: 12px;
 }

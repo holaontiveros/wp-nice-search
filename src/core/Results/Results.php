@@ -36,13 +36,11 @@ abstract class Results
 	{
 		$where = $this->getPostTypes();
 		$orderby = $this->getOrderBy();
-		$order = $this->getOrder();
 
 		$args = array(
 			'post_type' => $where,
 			'posts_per_page' => -1,
-			'orderby' => $orderby,
-			'order' => $order,
+			'post_status' => 'publish',
 			's' => $this->keyword
 		);
 
@@ -56,15 +54,6 @@ abstract class Results
 		}
 
 		return $posts;
-	}
-	
-	/**
-	 * 
-	 */
-	public function getOrder()
-	{
-		$settings = $this->settings;
-		return $settings['wpns_order'];
 	}
 	
 	/**
@@ -96,6 +85,7 @@ abstract class Results
 	 */
 	public function getTerms($post_obj)
 	{
+		$termarr = array();
 		$taxonomies = get_object_taxonomies($post_obj);
 		foreach ($taxonomies as $key => $value) {
 			if ($value == 'post_format' || $value == 'post_tag') {
@@ -109,7 +99,7 @@ abstract class Results
 			foreach ($terms as $term) {
 				$term_id = $term->term_id;
 				$term_name = $term->name;
-				$term_url = get_term_link($term_id);
+				$term_url = get_term_link($term, $taxonomy);
 				$term_link = '<a href="' . $term_url . '">' . $term_name . '</a>';
 				$termarr[] = $term_link;
 			}
@@ -199,6 +189,8 @@ abstract class Results
 			'_pods_field',
 			'_pods_pod',
 			'acf',
+			'acf-field',
+			'acf-field-group',
 			'attachment',
 			'nav_menu_item',
 			'post',

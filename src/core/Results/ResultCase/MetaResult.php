@@ -58,9 +58,9 @@ class MetaResult extends Results
 			$icons = apply_filters(
 				'metabox_icon',
 				array(
-					'icon_date' => 'fa fa-circle',
-					'icon_terms' => 'fa fa-circle',
-					'icon_author' => 'fa fa-circle'
+					'icon_date' => '<i class="fa fa-circle"></i>',
+					'icon_terms' => '<i class="fa fa-circle"></i>',
+					'icon_author' => '<i class="fa fa-circle"></i>'
 				)
 			);
 			// create the list results
