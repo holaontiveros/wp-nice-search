@@ -34,7 +34,7 @@ class WpnsFormShortcode
 			$atts
 		);
 		$settings = get_option('wpns_options');
-		include WPNS_DIR . '/test/TestForm.php';
+		include WPNS_DIR . '/src/templates/form.php';
 		return ob_get_clean();
 	}
 

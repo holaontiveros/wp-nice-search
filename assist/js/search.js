@@ -7,7 +7,7 @@
 jQuery(document).ready(function($){
 	var $ = jQuery;
 	// version 2 demo
-    $("#test_input").keyup(function(){
+    $("#wpns_input_search").keyup(function(){
     	var onlyPlace = $(this).attr('data-only');
     	var searchIcon = $('#wpns_search_icon');
     	var loading = $('#wpns_loading_search');
@@ -36,7 +36,7 @@ jQuery(document).ready(function($){
     });
 
 	/* Disabled submit event of the form */
-	$('#test_form').submit(function(e){
+	$('#wpns_search_form').submit(function(e){
 		e.preventDefault();
 	});
 });

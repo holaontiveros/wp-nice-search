@@ -15,7 +15,6 @@ define('WPNS_REQUIRE_VER', '4.0');
 require_once WPNS_DIR . '/src/init.php';
 
 register_activation_hook(__DIR__, 'wpnsCheckActivate');
-
 /**
  * Activate action
  */
@@ -53,4 +52,19 @@ function wpnsCheckActivate()
 		// Save default settings and configution
 		update_option('wpns_options' , $default_settings);
 	}
+}
+/**
+ * Add setting link in plugin page
+ */
+add_filter(
+	'plugin_action_links_' . plugin_basename(__FILE__),
+	'settingLink'
+);
+
+function settingLink($links) {
+	$settings_link = '<a href="';
+	$settings_link .= esc_url(get_admin_url(null, 'options-general.php?page=wpns-nice-search-menu'));
+	$settings_link .= '">Settings</a>';
+   $links[] = $settings_link;
+   return $links;
 }
