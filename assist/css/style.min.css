@@ -24,6 +24,11 @@
     top: 0;
     width: 40px;
 }
+
+.wpns-input::-moz-placeholder { color:#999; }
+.wpns-input::-webkit-input-placeholder { color:#999; }
+.wpns-input:-ms-input-placeholder { color:#999; }
+
 /* list results */
 .wpns-search-box .results {
   padding: 10px;

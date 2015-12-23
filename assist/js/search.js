@@ -12,12 +12,12 @@ jQuery(document).ready(function($){
     	var searchIcon = $('#wpns_search_icon');
     	var loading = $('#wpns_loading_search');
     	var resultsList = $('.results');
-    	var minLength = 1;
+    	var minLength = 3;
         var filter = $(this).val();
         if (filter.length >= minLength) {
     		searchIcon.hide();
         	loading.show();
-        	console.log(filter);
+        	//console.log(filter);
 		   	var data = {
 				action : 'get_results',
 				s: filter,
@@ -30,6 +30,8 @@ jQuery(document).ready(function($){
 				resultsList.empty();
 				resultsList.append(response).fadeIn(300);
 			});
+        } else {
+        	resultsList.fadeOut(200);
         }
     });
 

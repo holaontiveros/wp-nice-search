@@ -49,9 +49,9 @@ class WpnsRegisterScript {
 		$settings = get_option( 'wpns_options' );
 		$settings['wpns_only_search'] = $only;
 		update_option( 'wpns_options' , $settings);
-		if ($settings['wpns_items_featured'] == 'on' && $settings['chk_items_meta'] == 'on') {
+		if ($settings['wpns_items_featured'] == 'on' && $settings['wpns_items_meta'] == 'on') {
 			$obj = new FullResult($s);
-		} elseif ($settings['chk_items_meta'] == 'on') {
+		} elseif ($settings['wpns_items_meta'] == 'on') {
 			$obj = new MetaResult($s);
 		} elseif ($settings['wpns_items_featured'] == 'on') {
 			$obj = new ImageResult($s);
