@@ -72,7 +72,12 @@
   line-height: normal;
 }
 .wpns-search-box .results .list-results li .post-information .metabox {
-  font-size: 13px;
+  font-size: 12px;
+}
+.metabox i,
+.metabox a,
+.metabox date {
+  vertical-align: middle;
 }
 .wpns-post-author,
 .wpns-post-term, 
@@ -82,7 +87,6 @@
 }
 .post-information .fa {
   padding-right: 5px;
-  vertical-align: middle;
 }
 .post-information .fa-circle {
   font-size: 6px !important;

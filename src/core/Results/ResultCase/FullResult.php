@@ -75,7 +75,7 @@ class FullResult extends Results
 			$lists .= '<div class="post-information">';
 				$lists .= '<a class="post-title" href="' . $post_url . '">' . $post_title . '</a>';
 				$lists .= '<div class="metabox">';
-					$lists .= '<span class="wpns-post-date">' . $icons['icon_date'] . $post_date . '</span>';
+					$lists .= '<span class="wpns-post-date">' . $icons['icon_date'] . '<date>' . $post_date . '</date></span>';
 					if (!empty($post_terms)) {
 						$lists .= '<span class="wpns-post-term">' . $icons['icon_terms'];
 						$lists .= @implode(', ', $post_terms);
