@@ -92,11 +92,10 @@ abstract class Results
 				unset($taxonomies[$key]);
 			}
 		}
-		
+
 		//var_dump($taxonomies);
 		foreach ($taxonomies as $key => $taxonomy) {
 			$terms = wp_get_post_terms($post_obj->ID, $taxonomy);
-			var_dump($terms);
 			foreach ($terms as $term) {
 				$term_id = $term->term_id;
 				$term_name = $term->name;

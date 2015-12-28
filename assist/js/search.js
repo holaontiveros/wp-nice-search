@@ -12,7 +12,7 @@ jQuery(document).ready(function($){
     	var searchIcon = $('#wpns_search_icon');
     	var loading = $('#wpns_loading_search');
     	var resultsList = $('.results');
-    	var minLength = 3;
+    	var minLength = 1;
         var filter = $(this).val();
         if (filter.length >= minLength) {
     		searchIcon.hide();
