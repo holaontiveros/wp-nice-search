@@ -39,9 +39,9 @@ You can install the plugin by two ways:
 
 1. Through Wordpress admin panel:
 
-	- Goto "Plugins -> Add new". Type "w3topbar" into search box.
+	- Goto "Plugins -> Add new". Then type "wp-nice-search" into search box.
 	- Then click "Install Now" button and activate it.
-	(if you have one, just click "Upload plugin" on the top and choose the plugin zip file.)
+	(if you have already a plugin on zip file, just click "Upload plugin" on the top and choose the plugin zip file.)
 
 2. Upload through FTP
 

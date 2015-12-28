@@ -53,7 +53,9 @@ class FullResult extends Results
 				$post_image_url = apply_filters('no_image', $no_image);
 			}
 			// get terms
+			//var_dump($post_obj);
 			$post_terms = $this->getTerms($post_obj);
+			//var_dump($post_terms);
 			// get author
 			$author = $this->getAuthor($post_obj->post_author);
 			// get date
@@ -71,7 +73,9 @@ class FullResult extends Results
 
 			// create the list results
 			$lists .= '<li class="post-row">';
+			$lists .= '<div class="thumbnail-col">';
 			$lists .= '<img class="thumbnail" src="' . $post_image_url . '" alt="" width=50 />';
+			$lists .= '</div>';
 			$lists .= '<div class="post-information">';
 				$lists .= '<a class="post-title" href="' . $post_url . '">' . $post_title . '</a>';
 				$lists .= '<div class="metabox">';

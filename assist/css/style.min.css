@@ -56,6 +56,7 @@
   display: table;
   border-bottom: 1px dashed #ccc;
   padding: 5px 8px;
+  text-align: left;
 }
 .wpns-search-box .results .list-results li:hover {
   background-color: #f2f2f2;
@@ -65,12 +66,16 @@
   -moz-transition: all 0.5s ease 0s;
 }
 .wpns-search-box .results .list-results li .thumbnail {
-  vertical-align: middle;
   margin-right: 5px;
-  float: left;
+}
+.thumbnail-col {
+    float: left;
+    width: 8.33333%;
 }
 .wpns-search-box .results .list-results li .post-information {
   line-height: normal;
+  float: left;
+  width: 83.3333%;
 }
 .imagelist .post-information {
     padding-top: 15px;

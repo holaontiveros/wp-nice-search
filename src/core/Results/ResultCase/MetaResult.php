@@ -65,7 +65,9 @@ class MetaResult extends Results
 			);
 			// create the list results
 			$lists .= '<li class="post-row">';
+			$lists .= '<div class="title-row">';
 			$lists .= '<a class="post-title" href="' . $post_url . '">' . $post_title . '</a>';
+			$lists .= '</div>';
 			$lists .= '<div class="post-information">';
 				$lists .= '<div class="metabox">';
 					$lists .= '<span class="wpns-post-date">' . $icons['icon_date'] . '<date>' . $post_date . '</date></span>';

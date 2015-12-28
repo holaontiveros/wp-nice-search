@@ -48,7 +48,9 @@ class ImageResult extends Results
 			}
 
 			$lists .= '<li class="post-row">';
+				$lists .= '<div class="thumbnail-col">';
 				$lists .= '<img class="thumbnail" src="' . $post_image_url . '" alt="" width=50 />';
+				$lists .= '</div>';
 				$lists .= '<div class="post-information">';
 					$lists .= '<a class="post-title" href="' . $post_url . '">' . $post_title . '</a>';
 				$lists .= '</div>';
