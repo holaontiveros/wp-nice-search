@@ -36,12 +36,14 @@ abstract class Results
 	{
 		$where = $this->getPostTypes();
 		$orderby = $this->getOrderBy();
+		var_dump($orderby);
 
 		$args = array(
 			'post_type' => $where,
 			'posts_per_page' => -1,
 			'post_status' => 'publish',
-			's' => $this->keyword
+			's' => $this->keyword,
+			'orderby' => $orderby
 		);
 
 		$loop = new \WP_Query($args);
