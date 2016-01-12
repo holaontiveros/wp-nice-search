@@ -36,7 +36,6 @@ abstract class Results
 	{
 		$where = $this->getPostTypes();
 		$orderby = $this->getOrderBy();
-		var_dump($orderby);
 
 		$args = array(
 			'post_type' => $where,
