@@ -32,7 +32,10 @@ class ImageResult extends Results
 		$lists .= $list_style['heading_text'];
 		$lists .= '</' . $list_style['heading_tag'] .'>';
 		$post_ids = $this->getPosts();
-		if (empty($post_ids)) return $lists;
+		if (empty($post_ids)) { 
+			$lists .= '<p>No results are found.</p>';
+			return $lists;
+		}
 		$lists .= '<ul class="list-results imagelist">';
 		foreach ($post_ids as $id) {
 			$post_title = get_the_title($id);

@@ -34,6 +34,7 @@ abstract class Results
 	 */
 	public function getPosts()
 	{
+		$posts = array();
 		$where = $this->getPostTypes();
 		$orderby = $this->getOrderBy();
 

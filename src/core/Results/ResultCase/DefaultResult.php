@@ -32,7 +32,10 @@ class DefaultResult extends Results
 		$lists .= $list_style['heading_text'];
 		$lists .= '</' . $list_style['heading_tag'] .'>';
 		$post_ids = parent::getPosts();
-		if (empty($post_ids)) return;
+		if (empty($post_ids)) { 
+			$lists .= '<p>No results are found.</p>';
+			return $lists;
+		}
 		$lists .= '<ul class="list-results">';
 		foreach ($post_ids as $id) {
 			$post_title = get_the_title($id);
