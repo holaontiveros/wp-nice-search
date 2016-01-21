@@ -185,7 +185,7 @@ abstract class Results
 	{
 		$types = get_post_types(array('_builtin' => false));
 		$cpts = array();
-		$cpts_except = [
+		$cpts_except = array(
 			'slider',
 			'_pods_field',
 			'_pods_pod',
@@ -198,7 +198,7 @@ abstract class Results
 			'page',
 			'product_variation',
 			'revision',
-		];
+		);
 		$cpts = array_diff($types, $cpts_except);
 		return $cpts;
 	}
