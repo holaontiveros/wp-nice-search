@@ -33,7 +33,9 @@ class ImageResult extends Results
 		$lists .= '</' . $list_style['heading_tag'] .'>';
 		$post_ids = $this->getPosts();
 		if (empty($post_ids)) { 
-			$lists .= '<p>No results are found.</p>';
+			$lists .= '<p class="no-results">';
+			$lists .= apply_filters('no_results', __('No results are found.'));
+			$lists .= '</p>';
 			return $lists;
 		}
 		$lists .= '<ul class="list-results imagelist">';

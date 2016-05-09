@@ -36,7 +36,9 @@ class MetaResult extends Results
 		$post_ids = $this->getPosts();
 
 		if (empty($post_ids)) { 
-			$lists .= '<p>No results are found.</p>';
+			$lists .= '<p class="no-results">';
+			$lists .= apply_filters('no_results', __('No results are found.'));
+			$lists .= '</p>';
 			return $lists;
 		}
 
