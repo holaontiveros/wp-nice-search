@@ -4,7 +4,7 @@ Donate link: http://duywp.com/
 Tags: search, ajax, jquery, form
 Requires at least: 4.0
 Tested up to: 4.2.2
-Stable tag: 1.0.7
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,10 +61,18 @@ If you have any ideas or got any issues please send me an email to duyngha@gmail
 
 == Changelog ==
 
+= 1.0.9 =
+* Add: Add new filter for adjustment of "No results found."
+* Release Date 05/09/2016
+
+= 1.0.8 =
+* Fixed: fixed height of the results box
+* Release Date 04/30/2016
+
 = 1.0.7 =
 * Add: Arrange results by title, author, date (default is date)
 * Update: update some hook filters
-* Release Date 23/12/2015
+* Release Date 12/23/2015
 
 = 1.0.6 =
 * Fixed: Fixed css input issue.
@@ -82,7 +90,7 @@ If you have any ideas or got any issues please send me an email to duyngha@gmail
 = 1.0.2 =
 * Add: Create plugin admin page
 * Add: Clear up after delete the plugin
-* Release Date 09/10/2015
+* Release Date 10/09/2015
 
 = 1.0.1 =
 * Fixed: duplicate results list
@@ -94,10 +102,18 @@ Publish plugin
 
 == Upgrade Notice ==
 
+= 1.0.9 =
+* Add: Add new filter for adjustment of "No results found."
+* Release Date 05/09/2016
+
+= 1.0.8 =
+* Fixed: fixed height of the results box
+* Release Date 04/30/2016
+
 = 1.0.7 =
 * Add: Arrange results by title, author, date (default is date)
 * Update: update some hook filters
-* Release Date 23/12/2015
+* Release Date 12/23/2015
 
 = 1.0.6 =
 * Fixed: Fixed css input issue.
@@ -105,17 +121,17 @@ Publish plugin
 
 = 1.0.4 =
 * Add: Add 2 options allow to display the featured and metapost info within resutls list
-* Release Date 11/07/2015
+* Release Date 07/11/2015
 
 = 1.0.3 =
 * Fixed: Save settings in admin page
-* Release Date 10/70/2015
+* Release Date 07/10/2015
 
 = 1.0.2 =
 * Fixed: Save settings in admin page
 * Add: Create plugin admin page
 * Add: Clear up after delete the plugin
-* Release Date 09/07/2015
+* Release Date 07/09/2015
 
 = 1.0.1 =
 * Fixed: duplicate results list
