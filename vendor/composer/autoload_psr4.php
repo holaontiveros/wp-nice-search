@@ -6,6 +6,25 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'shortcode\\' => array($baseDir . '/src/shortcode'),
-    'core\\' => array($baseDir . '/src/core'),
+    'WPNS\\shortcode\\' => array($baseDir . '/src/shortcode'),
+    'WPNS\\Response\\' => array($baseDir . '/src/Response'),
+    'WPNS\\Request\\' => array($baseDir . '/src/Request'),
+    'WPNS\\Panel\\' => array($baseDir . '/src/Panel'),
+    'WPNS\\Database\\' => array($baseDir . '/src/Database'),
+    'WPNS\\Core\\' => array($baseDir . '/src/core'),
+    'WPNS\\' => array($baseDir . '/src'),
+    'Thunder\\Shortcode\\Tests\\' => array($vendorDir . '/thunderer/shortcode/tests'),
+    'Thunder\\Shortcode\\' => array($vendorDir . '/thunderer/shortcode/src'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Component\\Translation\\' => array($vendorDir . '/symfony/translation'),
+    'Shortcode\\Interfaces\\' => array($vendorDir . '/duyngha/shortcode/src/Interfaces'),
+    'Shortcode\\Classes\\' => array($vendorDir . '/duyngha/shortcode/src/Classes'),
+    'Shortcode\\' => array($vendorDir . '/duyngha/shortcode/src'),
+    'League\\Plates\\' => array($vendorDir . '/league/plates/src'),
+    'Illuminate\\Support\\' => array($vendorDir . '/illuminate/support'),
+    'Illuminate\\Database\\' => array($vendorDir . '/illuminate/database'),
+    'Illuminate\\Contracts\\' => array($vendorDir . '/illuminate/contracts'),
+    'Illuminate\\Container\\' => array($vendorDir . '/illuminate/container'),
+    'Corcel\\' => array($vendorDir . '/jgrossi/corcel/src'),
+    'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
 );
