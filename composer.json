@@ -1,8 +1,18 @@
 {
 	"autoload": {
 		"psr-4": {
-			"core\\": "src/core",
-			"shortcode\\": "src/shortcode"
+			"WPNS\\": "src",
+			"WPNS\\Controller\\": "src/Controller",
+			"WPNS\\Response\\": "src/Response",
+			"WPNS\\Database\\": "src/Database",
+			"WPNS\\Panel\\": "src/Panel",
+			"WPNS\\Core\\": "src/core"
 		}
+	},
+	"require": {
+		"jgrossi/corcel": "^1.1",
+		"duyngha/shortcode": "dev-master",
+		"illuminate/http": "~5.0",
+		"illuminate/routing": "~5.0"
 	}
 }
