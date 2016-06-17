@@ -1,7 +1,7 @@
 <?php
+ini_set('display_errors', 'On');
 use Illuminate\Http\Request as Request;
 use WPNS\Controller\UserController as UserController;
-use WPNS\Database\Posts as Posts;
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -16,6 +16,8 @@ Corcel\Database::connect($params);
 
 $data = new UserController;
 
-$data->getPost();
+$ids = $data->search();
+
+var_dump($ids);
 
 exit();
