@@ -1,16 +1,16 @@
 <?php
-namespace core;
+namespace WPNS\core;
 
-use core\Results\ResultCase\DefaultResult as DefaultResult;
-use core\Results\ResultCase\ImageResult as ImageResult;
-use core\Results\ResultCase\MetaResult as MetaResult;
-use core\Results\ResultCase\FullResult as FullResult;
+use WPNS\core\Results\ResultCase\DefaultResult as DefaultResult;
+use WPNS\core\Results\ResultCase\ImageResult as ImageResult;
+use WPNS\core\Results\ResultCase\MetaResult as MetaResult;
+use WPNS\core\Results\ResultCase\FullResult as FullResult;
 
 /**
  * Register script for ajax script and handle request search ajax
  * @package wpns
- * @author Duy Nguyen
- * @since 1.0.0
+ * @author  Duy Nguyen
+ * @since   1.0.0
  */
 class WpnsRegisterScript {
 	/**

@@ -1,10 +1,10 @@
 <?php
-namespace core\Results;
+namespace WPNS\core\Results;
 
 /**
  * Get data from database and format it base setting values
  * @package wpns
- * @since 1.0.7
+ * @since   1.0.7
  */
 
 abstract class Results

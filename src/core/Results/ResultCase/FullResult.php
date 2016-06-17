@@ -1,8 +1,8 @@
 <?php
 
-namespace core\Results\ResultCase;
+namespace WPNS\core\Results\ResultCase;
 
-use core\Results\Results as Results;
+use WPNS\core\Results\Results as Results;
 
 /**
  * This class create a default list with title and icons
