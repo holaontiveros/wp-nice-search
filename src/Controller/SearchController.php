@@ -1,4 +1,11 @@
 <?php
+/**
+ * 
+ *
+ * @author Duy Nguyen
+ * @since  1.1.0
+ */
+
 namespace WPNS\Controller;
 
 use Illuminate\Http\Request as Request;
@@ -6,7 +13,7 @@ use Illuminate\Routing\Controller as Controller;
 use Corcel\Post as Post;
 use Corcel\Options as Options;
 
-class UserController extends Controller
+class SearchController extends Controller
 {
     protected $request;
 
