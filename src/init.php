@@ -1,20 +1,34 @@
 <?php
-use core\Results\Results as Results;
-use core\Results\ResultCase\DefaultResult as DefaultResult;
-use core\Results\ResultCase\ImageResult as ImageResult;
-use core\Results\ResultCase\MetaResult as MetaResult;
-use core\Results\ResultCase\FullResult as FullResult;
-use core\WpnsAdmin as WpnsAdmin;
-use core\WpnsRegisterScript as WpnsRegisterScript;
-use shortcode\WpnsFormShortcode as WpnsFormShortcode;
+use WPNS\core\Results\Results as Results;
+use WPNS\core\Results\ResultCase\DefaultResult as DefaultResult;
+use WPNS\core\Results\ResultCase\ImageResult as ImageResult;
+use WPNS\core\Results\ResultCase\MetaResult as MetaResult;
+use WPNS\core\Results\ResultCase\FullResult as FullResult;
+use WPNS\core\WpnsAdmin as WpnsAdmin;
+use WPNS\core\WpnsRegisterScript as WpnsRegisterScript;
 
-require WPNS_DIR . '/src/loader.php';
+// test
+use WPNS\Shortcodes\Search as Search;
+use WPNS\Request\UserController as UserController;
+use Illuminate\Http\Request as Request;
 
 $GLOBALS['wp_rewrite'] = new \WP_Rewrite();
 
 new WpnsAdmin;
-new WpnsFormShortcode;
 new WpnsRegisterScript;
+
+$params = array(
+    'database'  => 'thebest',
+    'username'  => 'root',
+    'password'  => 'root',
+    'prefix'    => 'wp_'
+);
+Corcel\Database::connect($params);
+
+$search = new Search;
+$search->create();
+
+// end code for new version 1.1.0
 
 register_activation_hook(WPNS_FILE, 'wpnsCheckActivate');
 /**

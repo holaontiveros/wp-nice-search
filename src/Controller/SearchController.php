@@ -10,8 +10,8 @@ namespace WPNS\Controller;
 
 use Illuminate\Http\Request as Request;
 use Illuminate\Routing\Controller as Controller;
-use Corcel\Post as Post;
 use Corcel\Options as Options;
+use WPNS\Database\Model\Entry;
 
 class SearchController extends Controller
 {
@@ -37,7 +37,7 @@ class SearchController extends Controller
     {
         $options = $this->getOptions();
 
-        $list = Post::where('post_title', 'LIKE', '%' . $this->searchKeyword() . '%');
+        $list = Entry::where('post_title', 'LIKE', '%' . $this->searchKeyword() . '%');
 
         if ((array_key_exists('wpns_in_post', $options) && array_key_exists('wpns_in_page', $options) && array_key_exists('wpns_in_cpt', $options)) || array_key_exists('wpns_in_all', $options)) {
             
@@ -69,8 +69,9 @@ class SearchController extends Controller
 
         }
 
+        //$list = $list->where('post_status', 'publish')->pluck('ID')->all();
 
-        $list = $list->where('post_status', 'publish')->pluck('ID')->all();
+        $list = $list->where('post_status', 'publish')->get()->all();
 
         return $list;
 
