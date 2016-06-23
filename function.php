@@ -1,7 +1,8 @@
 <?php
 ini_set('display_errors', 'On');
 use Illuminate\Http\Request as Request;
-use WPNS\Controller\UserController as UserController;
+use WPNS\Controller\SearchController as SearchController;
+use WPNS\Controller\ListController as ListController;
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -14,10 +15,11 @@ $params = array(
 
 Corcel\Database::connect($params);
 
-$data = new UserController;
+$list = new ListController;
 
-$ids = $data->search();
+$html = $list->createList(new SearchController);
 
-var_dump($ids);
+echo json_encode($html);
 
-exit();
+exit;
+

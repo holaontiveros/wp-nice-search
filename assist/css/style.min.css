@@ -100,3 +100,6 @@
 .post-information .fa-circle {
   font-size: 6px !important;
 }
+.post-row {
+    clear: both;
+}
