@@ -7,28 +7,49 @@
  */
 
 jQuery(document).ready(function($){
+
 	var $ = jQuery;
+
 	// version 2 demo
-	var search_button = $("#ajax_form input[type='text']");
-	search_button.on('keyup', function(event){
+	var search = $("#ajax_form input[type='text']");
+
+	var debug = $('#debug');
+
+	search.keyup(function(e){
+
         var filter = $(this).val();
+
         //console.log(filter);
+
         $.ajax({
 
 	        type: "POST",
+
 	        url:'http://thebest.dev/wp-content/plugins/wp-nice-search/function.php',
+
 	        data: {
+
 	        	s: filter
+
 	        },
+
 	        dataType: 'json',
-	        success: function(data){
-	            //console.log(data);
-	            $('#debug').append(data);
+
+	        success: function(d){
+
+	            console.log('ok');
+
+	            debug.empty();
+
+	            debug.append(d);
 	        },
-	        error: function(data){
+
+	        error: function(xhr, status, error){
+
+	        	console.log('error');
 
 	        }
-    	});
+    	});		
 
 	});
 	
