@@ -8,8 +8,7 @@
 namespace WPNS\Controller;
 
 use Illuminate\Routing\Controller as Controller;
-use WPNS\Controller\SearchController as SearchController;
-use Corcel\Options as Options;
+use WPNS\Controller\SearchController;
 
 class ListController extends Controller
 {
@@ -29,6 +28,8 @@ class ListController extends Controller
 
 			$url = $result->getPermalink();
 
+			//$url = '';
+
 			// get featured image
 			$featuredImage = $result->getFeaturedImageUrl();
 
@@ -38,28 +39,18 @@ class ListController extends Controller
 			// get author
 			$authorName = $result->author()->getAuthorFullName();
 
-			//$authorUrl = $result->author()->getUrlAttribute();
+			$authorUrl = $result->author()->getAuthorUrl();
 
 			// get date
 			$format = 'd M, Y';
 
 			$publishDate = $result->getCreatedAtAttribute()->format($format);
 
-			// icon array
-/*			$icons = apply_filters(
-				'metabox_icon',
-				array(
-					'icon_date' => '<i class="fa fa-circle"></i>',
-					'icon_terms' => '<i class="fa fa-circle"></i>',
-					'icon_author' => '<i class="fa fa-circle"></i>'
-				)
-			);*/
-
-			$icons = array(
-					'icon_date' => '<i class="fa fa-circle"></i>',
-					'icon_terms' => '<i class="fa fa-circle"></i>',
-					'icon_author' => '<i class="fa fa-circle"></i>'
-				);
+			$icons = [
+				'icon_date' => '<i class="fa fa-circle"></i>',
+				'icon_terms' => '<i class="fa fa-circle"></i>',
+				'icon_author' => '<i class="fa fa-circle"></i>'
+			];
 
 			// create the list results
 			$lists .= '<li class="post-row">';
@@ -87,12 +78,14 @@ class ListController extends Controller
 					if (!empty($terms)) {
 
 						$lists .= '<span class="wpns-post-term">' . $icons['icon_terms'];
+
 						$lists .= implode(', ', $terms);
+
 						$lists .= '</span>';
 
 					}
 
-					$lists .= '<span class="wpns-post-author">' . $icons['icon_author'] . '<a href="">' . $authorName . '</a></span>';
+					$lists .= '<span class="wpns-post-author">' . $icons['icon_author'] . '<a href="' . $authorUrl . '">' . $authorName . '</a></span>';
 
 				$lists .= '</div>';
 				

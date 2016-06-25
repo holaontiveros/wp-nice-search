@@ -9,6 +9,7 @@
 namespace WPNS\Database\Model;
 
 use Corcel\User;
+use Corcel\Options;
 
 class Author extends User
 {
@@ -29,7 +30,15 @@ class Author extends User
 
 	public function getAuthorUrl()
 	{
-		return $this->url;	
+		$options = new Options;
+
+		$url = $options->where('option_name', 'home')->first()->option_value . '?author=' . $this->ID;
+
+		$search = '/\?author=.*/';
+
+		$permalink = preg_replace($search, 'author/' . $this->getLoginAttribute(), $url);
+
+		return $permalink;
 	}
 
 }

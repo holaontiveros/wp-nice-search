@@ -21,6 +21,11 @@ class Entry extends Post
 
 	}
 
+	public function taxonomies()
+	{
+		return $this->belongsToMany('WPNS\Database\Model\Taxonomy', 'term_relationships', 'object_id', 'term_taxonomy_id');
+	}
+
 	public function author()
 	{
 		return $this->belongsTo('WPNS\Database\Model\Author', 'post_author')->getResults()->all()->all()[0];
@@ -32,7 +37,7 @@ class Entry extends Post
 
 		foreach ($this->taxonomies()->getResults()->all() as $tax) {
 
-			$terms[] = $tax->term()->getResults()->name;
+			$terms[] = '<a href="' . $tax->term()->getResults()->getTermUrl() . '">' . $tax->term()->getResults()->name . '</a>';
 
 		}
 
@@ -43,11 +48,13 @@ class Entry extends Post
 	{
 		$permalink = '';
 
-		$url = Options::get('home') . '?p=' . $this->ID;
+		$setting = new Options;
+
+		$url = $setting->where('option_name', 'home')->first()->option_value . '?p=' . $this->ID;
 
 		$search = '/\?p=.*/';
 
-		$structure = Options::get('permalink_structure');
+		$structure = $setting->where('option_name', 'permalink_structure')->first()->option_value;
 
 		if ($structure == '/%postname%/') {
 

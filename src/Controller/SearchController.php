@@ -8,10 +8,11 @@
 
 namespace WPNS\Controller;
 
-use Illuminate\Http\Request as Request;
-use Illuminate\Routing\Controller as Controller;
-use Corcel\Options as Options;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use WPNS\Database\Model\Entry;
+use WPNS\Database\Model\Settings;
+use Corcel\Options;
 
 class SearchController extends Controller
 {
@@ -79,7 +80,9 @@ class SearchController extends Controller
 
     public function getOptions()
     {
-        return Options::get('wpns_options');
+        $settings = new Options;
+
+        return unserialize($settings->where('option_name', 'wpns_options')->first()->option_value);
     }
 
 }
