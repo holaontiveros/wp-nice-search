@@ -1,87 +1,16 @@
 /* CSS3 mixin */
 /* Individual mixin */
 /* Search form */
-.wpns-input-box {
-  position: relative;
-}
-.wpns-input-box input {
-  box-sizing: border-box;
-  -o-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: -moz-border-box;
-  height: 40px;
-  padding: 0 10px;
-  width: 100%;
-}
-#wpns_search_icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-#wpns_loading_search {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    width: 30px;
-    height: 30px;
-}
-#wpns_search_icon::before {
-  font-size: 1.2em;
-}
 
-.wpns-input::-moz-placeholder { color:#999; }
-.wpns-input::-webkit-input-placeholder { color:#999; }
-.wpns-input:-ms-input-placeholder { color:#999; }
-
-/* list results */
-.wpns-search-box .results {
-  padding: 10px;
-}
-.wpns-search-box .results h4 {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 10px;
-}
-.wpns-search-box .results .list-results {
-  padding: 0;
-  margin: 0;
-  max-height: 400px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: 400px;
-}
-.wpns-search-box .results .list-results li {
+.list-results li.row.post-row {
   list-style: none;
-  clear: both;
-  width: 100%;
-  display: table;
-  border-bottom: 1px dashed #ccc;
-  padding: 5px 8px;
-  text-align: left;
 }
-.wpns-search-box .results .list-results li:hover {
+.list-results li.row.post-row:hover {
   background-color: #f2f2f2;
   transition: all 0.5s ease 0s;
   -webkit-transition: all 0.5s ease 0s;
   -o-transition: all 0.5s ease 0s;
   -moz-transition: all 0.5s ease 0s;
-}
-.wpns-search-box .results .list-results li .thumbnail {
-  margin-right: 5px;
-}
-.thumbnail-col {
-    float: left;
-    width: 8.33333%;
-}
-.wpns-search-box .results .list-results li .post-information {
-  line-height: normal;
-  float: left;
-  width: 83.3333%;
-}
-.imagelist .post-information {
-    padding-top: 15px;
-}
-.wpns-search-box .results .list-results li .post-information .metabox {
-  font-size: 12px;
 }
 .metabox i,
 .metabox a,
@@ -102,4 +31,13 @@
 }
 .post-row {
     clear: both;
+}
+#loadmore {
+  text-align: center;
+}
+#loadmore button.btn.btn-default {
+  color: #666!important;
+}
+#moreloading {
+  width: 20%;
 }
