@@ -15,21 +15,58 @@ jQuery(document).ready(function($){
 
 	var debug = $('#debug');
 
+	var form = $('#ajax_form');
+
+	//var list = $('#results_list');
+
+	var list = $('.list-results');
+
+	var loadmoreBox = $('#loadmore');
+
+	var loadmore = '#loadmore button';
+
+	var moreloading = $('#moreloading');
+
+	var keyword;
+
+	var currentPage = $('input[name="current_page"]').val();
+
+	var onlySearch = $('input[name="only_search"]').val();
+
+	var url = form.attr('action');
+
+	var method = form.attr('method');
+
+	loadmoreBox.hide();
+
+	moreloading.hide();
+
+	form.submit(function(e){
+
+		e.preventDefault();
+
+	});
+
+	// searching
 	search.keyup(function(e){
 
-        var filter = $(this).val();
+        keyword = $(this).val();
 
-        //console.log(filter);
+        if (keyword == '') return;
 
         $.ajax({
 
-	        type: "POST",
+	        type: method,
 
-	        url:'http://thebest.dev/wp-content/plugins/wp-nice-search/function.php',
+	        url: url,
 
 	        data: {
 
-	        	s: filter
+	        	s: keyword,
+
+	        	page: currentPage,
+
+	        	onlySearch: onlySearch
 
 	        },
 
@@ -37,11 +74,14 @@ jQuery(document).ready(function($){
 
 	        success: function(d){
 
-	            console.log('ok');
+	            //console.log('ok');
 
-	            debug.empty();
+	            list.empty();
 
-	            debug.append(d);
+	            list.append(d);
+
+	            loadmoreBox.show();
+
 	        },
 
 	        error: function(xhr, status, error){
@@ -52,5 +92,63 @@ jQuery(document).ready(function($){
     	});		
 
 	});
+
+	// load more results
+	$(document).on('click', loadmore, function(){
+
+		currentPage = parseInt(currentPage);
+
+		currentPage++;
+
+		moreloading.show();
+
+        $.ajax({
+
+	        type: method,
+
+	        url: url,
+
+	        data: {
+
+	        	s: keyword,
+
+	        	page: currentPage,
+
+	        	onlySearch: onlySearch
+
+	        },
+
+	        dataType: 'json',
+
+	        success: function(d){
+
+	        	if (d.length == 0) {
+
+	        		loadmoreBox.hide();
+
+	        	} else {
+
+	        		list.append(d);
+
+	        	}
+
+	        	moreloading.hide();
+
+	        },
+
+	        error: function(xhr, status, error){
+
+	        	console.log('error');
+
+	        }
+    	});		
+
+	});
+
+	function ajax(form, keyword, offset)
+	{
+
+
+	}
 	
 });

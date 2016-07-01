@@ -37,6 +37,12 @@ class Search extends Shortcode
 
 		$settings = Options::get('wpns_options');
 
+		if ($options['only_search'] != '') {
+
+			$settings['wpns_only_search'] = $options['only_search'];
+
+		}
+
 		echo $this->plates->render($this->templateName, ['options' => $options, 'settings' => $settings]);
 	}
 }

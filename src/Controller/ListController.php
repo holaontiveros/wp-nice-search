@@ -20,7 +20,7 @@ class ListController extends Controller
 
 		$lists = '';
 
-		$lists .= '<ul class="list-results">';
+		//$lists .= '<ul class="list-results">';
 
 		foreach ($results as $result) {
 
@@ -53,11 +53,11 @@ class ListController extends Controller
 			];
 
 			// create the list results
-			$lists .= '<li class="post-row">';
+			$lists .= '<li class="row post-row">';
 
 			if (array_key_exists('wpns_items_featured', $options)) {
 
-				$lists .= '<div class="thumbnail-col">';
+				$lists .= '<div class="col-md-1 thumbnail-col">';
 
 				$lists .= '<img class="thumbnail" src="' . $featuredImage . '" alt="" width=50 />';
 
@@ -65,9 +65,9 @@ class ListController extends Controller
 
 			}
 
-			$lists .= '<div class="post-information">';
+			$lists .= '<div class="col-md-11 post-information">';
 
-				$lists .= '<a class="post-title" href="' . $url . '">' . $title . '</a>';
+				$lists .= '<h3><a class="post-title" href="' . $url . '">' . $title . '</a></h3>';
 
 			if (array_key_exists('wpns_items_meta', $options)) {
 
@@ -96,7 +96,11 @@ class ListController extends Controller
 			$lists .= '</li>';
 		}
 
-		$lists .= '</ul>';
+		//$lists .= '</ul>';
+
+		//$loadmore = '<div id="loadmore"><button class="btn btn-default">Load more</button></div>';
+
+		//$lists .= $loadmore;
 
 		return $lists;
 
