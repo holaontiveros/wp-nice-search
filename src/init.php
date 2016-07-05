@@ -15,7 +15,7 @@ use Illuminate\Http\Request as Request;
 $GLOBALS['wp_rewrite'] = new \WP_Rewrite();
 
 new WpnsAdmin;
-new WpnsRegisterScript;
+//new WpnsRegisterScript;
 
 $params = array(
     'database'  => 'thebest',

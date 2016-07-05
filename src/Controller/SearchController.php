@@ -41,7 +41,7 @@ class SearchController extends Controller
         } else {
 
             if ((array_key_exists('wpns_in_post', $options) && array_key_exists('wpns_in_page', $options) && array_key_exists('wpns_in_cpt', $options)) || array_key_exists('wpns_in_all', $options)) {
-                
+
                 $list = $list->whereNotIn('post_type', ['nav_menu_item', 'revision', 'attachment']);
               
             } elseif (array_key_exists('wpns_in_post', $options) && array_key_exists('wpns_in_page', $options)) {
@@ -79,7 +79,7 @@ class SearchController extends Controller
 
         // $list = $list->where('post_status', 'publish')->get()->all();
 
-        $list = $list->take(0)->paged(1, $this->getInput('page'))->all();
+        $list = $list->take(0)->paged(10, $this->getInput('page'))->all();
 
         return $list;
 
