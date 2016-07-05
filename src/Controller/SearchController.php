@@ -79,7 +79,7 @@ class SearchController extends Controller
 
         // $list = $list->where('post_status', 'publish')->get()->all();
 
-        $list = $list->take(0)->paged(1, $this->getInput('page'))->all();
+        $list = $list->take(0)->paged(10, $this->getInput('page'))->all();
 
         return $list;
 

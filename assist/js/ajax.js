@@ -7,7 +7,7 @@
  */
 
 jQuery(document).ready(function($){
-
+	
 	var $ = jQuery;
 
 	// version 2 demo
@@ -16,8 +16,6 @@ jQuery(document).ready(function($){
 	var debug = $('#debug');
 
 	var form = $('#ajax_form');
-
-	//var list = $('#results_list');
 
 	var list = $('.list-results');
 

@@ -24,6 +24,8 @@ class Search extends Shortcode
 
 		$this->setPlates();
 
+		$this->registerScript();
+
 	}
 
 	public function callback($atts, $cont)
@@ -40,5 +42,15 @@ class Search extends Shortcode
 		$settings['wpns_only_search'] = $options['only_search'];
 
 		echo $this->plates->render($this->templateName, ['options' => $options, 'settings' => $settings]);
+	}
+
+	public function registerScript()
+	{
+		add_action('wp_enqueue_scripts', [$this, 'scripts']);
+	}
+
+	public function scripts()
+	{
+		wp_enqueue_script('wpns_ajax_search', WPNS_URL . '/assist/js/ajax.js', ['jquery'], WPNS_PLUGIN_VER, true);
 	}
 }

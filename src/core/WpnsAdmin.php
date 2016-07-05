@@ -68,7 +68,7 @@ class WpnsAdmin
 			array(),
 			WPNS_PLUGIN_VER
 		);
-		wp_enqueue_script('ajax_search', WPNS_URL . 'assist/js/ajax.js');
+		//wp_enqueue_script('ajax_search', WPNS_URL . 'assist/js/ajax.js');
 	}
 
 	/**
