@@ -9,13 +9,13 @@ use WPNS\core\WpnsRegisterScript as WpnsRegisterScript;
 
 // test
 use WPNS\Shortcodes\Search as Search;
+use WPNS\Shortcodes\Filter;
 use WPNS\Request\UserController as UserController;
 use Illuminate\Http\Request as Request;
 
 $GLOBALS['wp_rewrite'] = new \WP_Rewrite();
 
 new WpnsAdmin;
-//new WpnsRegisterScript;
 
 $params = array(
     'database'  => 'thebest',
@@ -27,6 +27,9 @@ Corcel\Database::connect($params);
 
 $search = new Search;
 $search->create();
+
+$filter = new Filter;
+$filter->create();
 
 // end code for new version 1.1.0
 
