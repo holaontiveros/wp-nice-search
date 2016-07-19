@@ -13,6 +13,11 @@ use Corcel\Options;
 
 class Entry extends Post
 {
+	public function getThumbnailMeta()
+	{
+		var_dump($this->thumbnail()->getResults());
+	}
+
 	public function getFeaturedImageUrl()
 	{
 		if ($this->thumbnail()->getResults() == null) return null;

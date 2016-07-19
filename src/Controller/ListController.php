@@ -20,15 +20,13 @@ class ListController extends Controller
 
 		$lists = '';
 
-		//$lists .= '<ul class="list-results">';
-
 		foreach ($results as $result) {
+
+			var_dump($result->getThumbnailMeta());
 
 			$title = $result->getTitleAttribute();
 
 			$url = $result->getPermalink();
-
-			//$url = '';
 
 			// get featured image
 			$featuredImage = $result->getFeaturedImageUrl();
@@ -67,7 +65,7 @@ class ListController extends Controller
 
 			$lists .= '<div class="col-md-11 post-information">';
 
-				$lists .= '<h3><a class="post-title" href="' . $url . '">' . $title . '</a></h3>';
+				$lists .= '<h4><a class="post-title" href="' . $url . '">' . $title . '</a></h4>';
 
 			if (array_key_exists('wpns_items_meta', $options)) {
 
@@ -95,12 +93,6 @@ class ListController extends Controller
 
 			$lists .= '</li>';
 		}
-
-		//$lists .= '</ul>';
-
-		//$loadmore = '<div id="loadmore"><button class="btn btn-default">Load more</button></div>';
-
-		//$lists .= $loadmore;
 
 		return $lists;
 
