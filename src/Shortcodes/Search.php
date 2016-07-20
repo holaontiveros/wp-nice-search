@@ -51,6 +51,10 @@ class Search extends Shortcode
 
 	public function scripts()
 	{
-		wp_enqueue_script('wpns_ajax_search', WPNS_URL . '/assist/js/ajax.js', ['jquery'], WPNS_PLUGIN_VER, true);
+		wp_enqueue_script('wpns_ajax_search', WPNS_URL . 'assist/js/ajax.js', ['jquery'], WPNS_PLUGIN_VER, true);
+
+		wp_enqueue_style('mini-bootstrap-col', WPNS_URL . 'assist/css/mini-bootstrap-col.min.css');
+
+		wp_enqueue_style('results-list', WPNS_URL . 'assist/css/results-list.css');
 	}
 }

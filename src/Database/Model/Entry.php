@@ -13,9 +13,17 @@ use Corcel\Options;
 
 class Entry extends Post
 {
-	public function getThumbnailMeta()
+	public function getThumbnailUrl($size = [150, 150])
 	{
-		var_dump($this->thumbnail()->getResults());
+		if ($this->getFeaturedImageUrl() == null) return '';
+
+		$attachmentInfo = pathinfo($this->getFeaturedImageUrl());
+
+		$thumbnailName = $attachmentInfo['filename'] . '-' . $size[0] . 'x' . $size[1] . '.' . $attachmentInfo['extension'];
+
+		$thumbnailUrl = $attachmentInfo['dirname'] . '/' . $thumbnailName;
+
+		return $thumbnailUrl;
 	}
 
 	public function getFeaturedImageUrl()

@@ -6,6 +6,12 @@ use WPNS\Controller\ListController as ListController;
 
 require __DIR__ . '/vendor/autoload.php';
 
+var_dump($_SERVER);
+
+$imageUrl = $_SERVER['HTTP_REFERER'] . 'wp-content/plugins/wp-nice-search/assist/images/';
+
+define('WPNS_IMAGES', $imageUrl);
+
 $params = array(
     'database'  => 'thebest',
     'username'  => 'root',

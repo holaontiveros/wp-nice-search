@@ -16,4 +16,35 @@ define('WPNS_FILE', __FILE__);
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+$params = array(
+    'database'  => 'thebest',
+    'username'  => 'root',
+    'password'  => 'root',
+    'prefix'    => 'wp_'
+);
+
+Corcel\Database::connect($params);
+
+// test
+use WPNS\Shortcodes\Search as Search;
+use WPNS\Shortcodes\Filter;
+use WPNS\Request\UserController as UserController;
+use Illuminate\Http\Request as Request;
+
+$params = array(
+    'database'  => 'thebest',
+    'username'  => 'root',
+    'password'  => 'root',
+    'prefix'    => 'wp_'
+);
+Corcel\Database::connect($params);
+
+$search = new Search;
+$search->create();
+
+$filter = new Filter;
+$filter->create();
+
+// end code for new version 1.1.0
+
 require_once WPNS_DIR . '/src/init.php';

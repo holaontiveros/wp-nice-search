@@ -7,32 +7,6 @@ use WPNS\core\Results\ResultCase\FullResult as FullResult;
 use WPNS\core\WpnsAdmin as WpnsAdmin;
 use WPNS\core\WpnsRegisterScript as WpnsRegisterScript;
 
-// test
-use WPNS\Shortcodes\Search as Search;
-use WPNS\Shortcodes\Filter;
-use WPNS\Request\UserController as UserController;
-use Illuminate\Http\Request as Request;
-
-$GLOBALS['wp_rewrite'] = new \WP_Rewrite();
-
-new WpnsAdmin;
-
-$params = array(
-    'database'  => 'thebest',
-    'username'  => 'root',
-    'password'  => 'root',
-    'prefix'    => 'wp_'
-);
-Corcel\Database::connect($params);
-
-$search = new Search;
-$search->create();
-
-$filter = new Filter;
-$filter->create();
-
-// end code for new version 1.1.0
-
 register_activation_hook(WPNS_FILE, 'wpnsCheckActivate');
 /**
  * Activate action

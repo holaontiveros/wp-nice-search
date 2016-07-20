@@ -22,14 +22,14 @@ class ListController extends Controller
 
 		foreach ($results as $result) {
 
-			var_dump($result->getThumbnailMeta());
-
 			$title = $result->getTitleAttribute();
 
 			$url = $result->getPermalink();
 
 			// get featured image
-			$featuredImage = $result->getFeaturedImageUrl();
+			$thumbnailUrl = $result->getThumbnailUrl();
+
+			if ($thumbnailUrl == '') $thumbnailUrl = WPNS_IMAGES . 'no_photo.jpg';
 
 			// get terms
 			$terms = $result->terms();
@@ -57,7 +57,7 @@ class ListController extends Controller
 
 				$lists .= '<div class="col-md-1 thumbnail-col">';
 
-				$lists .= '<img class="thumbnail" src="' . $featuredImage . '" alt="" width=50 />';
+				$lists .= '<img class="thumbnail" src="' . $thumbnailUrl . '" alt="" width=50 />';
 
 				$lists .= '</div>';
 
