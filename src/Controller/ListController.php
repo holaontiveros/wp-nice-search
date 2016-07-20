@@ -29,7 +29,7 @@ class ListController extends Controller
 			// get featured image
 			$thumbnailUrl = $result->getThumbnailUrl();
 
-			if ($thumbnailUrl == '') $thumbnailUrl = WPNS_IMAGES . 'no_photo.jpg';
+			if ($thumbnailUrl == '') $thumbnailUrl = IMAGE_URL . '/no_photo.jpg';
 
 			// get terms
 			$terms = $result->terms();
@@ -65,7 +65,7 @@ class ListController extends Controller
 
 			$lists .= '<div class="col-md-11 post-information">';
 
-				$lists .= '<h4><a class="post-title" href="' . $url . '">' . $title . '</a></h4>';
+				$lists .= '<a class="post-title" href="' . $url . '">' . $title . '</a>';
 
 			if (array_key_exists('wpns_items_meta', $options)) {
 

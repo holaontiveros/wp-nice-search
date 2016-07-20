@@ -1,16 +1,16 @@
 <?php
-ini_set('display_errors', 'On');
 use Illuminate\Http\Request as Request;
 use WPNS\Controller\SearchController as SearchController;
 use WPNS\Controller\ListController as ListController;
 
 require __DIR__ . '/vendor/autoload.php';
 
-var_dump($_SERVER);
+$root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
 
-$imageUrl = $_SERVER['HTTP_REFERER'] . 'wp-content/plugins/wp-nice-search/assist/images/';
+$fileUrl = pathinfo(str_replace($_SERVER['DOCUMENT_ROOT'], $root, $_SERVER['SCRIPT_FILENAME']));
 
-define('WPNS_IMAGES', $imageUrl);
+define('ROOT_URL', $fileUrl['dirname']);
+define('IMAGE_URL', ROOT_URL . '/assist/images');
 
 $params = array(
     'database'  => 'thebest',
@@ -28,4 +28,3 @@ $html = $list->createList(new SearchController);
 echo json_encode($html);
 
 exit;
-

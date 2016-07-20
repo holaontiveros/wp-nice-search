@@ -1,7 +1,9 @@
-/* CSS3 mixin */
-/* Individual mixin */
-/* Search form */
+/* --------- GENERAL STYLE ---------- */
+#results_list {
+    margin: 0;
+}
 
+/* Search form */
 .list-results li.row.post-row {
   list-style: none;
 }
@@ -48,4 +50,12 @@ form#ajax_form .form-group {
   background-color: #fff;
   padding: 0;
   margin: 0;
+}
+
+/* ------------- RESULTS LIST STYE -------------- */
+.post-information > a.post-title {
+    text-decoration: none;
+}
+.metabox {
+    font-size: 12px;
 }
