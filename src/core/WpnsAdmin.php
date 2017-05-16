@@ -120,7 +120,7 @@ class WpnsAdmin
 			'wpns_options',
 			'wpns_options'
 		);
-	
+
 		// section where
 		add_settings_section(
 			'wpns_group_where',
@@ -135,7 +135,7 @@ class WpnsAdmin
 			$this->menu_slug,
 			'wpns_group_where'
 		);
-		
+
 		// section orderby
 		add_settings_section(
 			'wpns_group_orderby',
@@ -180,7 +180,7 @@ class WpnsAdmin
 			$this->menu_slug,
 			'wpns_group_form'
 		);
-		
+
 		// document section
 		add_settings_section(
 			'wpns_group_doc',
@@ -198,7 +198,7 @@ class WpnsAdmin
 	{
 		echo '<h3>Where do you want to search?</h3>';
 	}
-	
+
 	/**
 	 * Draw the orderby section
 	 * @since 1.0.7
@@ -207,7 +207,7 @@ class WpnsAdmin
 	{
 		echo '<h3>Sort retrieved results base on</h3>';
 	}
-	
+
 	/**
 	 * Draw the layout section
 	 * @since 1.0.7
@@ -216,7 +216,7 @@ class WpnsAdmin
 	{
 		echo '<h3>Choose the layout for the list results</h3>';
 	}
-	
+
 	/**
 	 * Draw the form design section
 	 * @since 1.0.7
@@ -282,7 +282,7 @@ class WpnsAdmin
 				<i>Order</i>
 			</label>
 		</fieldset>
-		<?php		
+		<?php
 	}
 
 	/**
@@ -311,6 +311,11 @@ class WpnsAdmin
 			<label>
 				<input type="checkbox" class="chk_items" name="wpns_options[wpns_in_cpt]" <?php @checked($this->settings['wpns_in_cpt'], 'on'); ?> />
 				<i>Custom post type</i>
+			</label>
+			<br>
+			<label>
+				<input type="checkbox" class="chk_items" name="wpns_options[wpns_in_woo]" <?php @checked($this->settings['wpns_in_woo'], 'on'); ?> />
+				<i>Woocommerce products</i>
 			</label>
 			<br>
 		</fieldset>

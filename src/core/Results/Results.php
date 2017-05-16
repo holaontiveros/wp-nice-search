@@ -1,10 +1,10 @@
 <?php
-namespace WPNS\core\Results;
+namespace core\Results;
 
 /**
  * Get data from database and format it base setting values
  * @package wpns
- * @since   1.0.7
+ * @since 1.0.7
  */
 
 abstract class Results
@@ -13,12 +13,12 @@ abstract class Results
 	 * @var array $settings
 	 */
 	protected $settings;
-	
+
 	/**
 	 * @var string $keyword
 	 */
 	protected $keyword;
-	
+
 	/**
 	 * constructor
 	 */
@@ -47,7 +47,7 @@ abstract class Results
 		);
 
 		$loop = new \WP_Query($args);
-		
+
 		if ($loop->have_posts()) {
 			while ($loop->have_posts()) {
 				$loop->the_post();
@@ -57,7 +57,7 @@ abstract class Results
 
 		return $posts;
 	}
-	
+
 	/**
 	 * @param int $author_id
 	 */
@@ -76,10 +76,10 @@ abstract class Results
 		}
 		$author['author_url'] = $author_url;
 		$author['author_nicename'] = $post_author_name;
-		
+
 		return $author;
 	}
-	
+
 	/**
 	 * get terms of post
 	 * @param object $post_obj
@@ -95,7 +95,7 @@ abstract class Results
 			}
 		}
 
-		//var_dump($taxonomies);
+		//$terms = array();
 		foreach ($taxonomies as $key => $taxonomy) {
 			$terms = wp_get_post_terms($post_obj->ID, $taxonomy);
 			foreach ($terms as $term) {
@@ -106,10 +106,10 @@ abstract class Results
 				$termarr[] = $term_link;
 			}
 		}
-		
+
 		return $termarr;
 	}
-	
+
 	/**
 	 * @return string $orderby
 	 */
@@ -117,7 +117,7 @@ abstract class Results
 	{
 		$orderby = array();
 		$settings = $this->settings;
-		
+
 		$priority = array(
 			'title' => $settings['wpns_title_pri'],
 			'date' => $settings['wpns_date_pri'],
@@ -148,29 +148,24 @@ abstract class Results
 			if ($settings['wpns_in_all'] == 'on') {
 				$post_types[] = 'post';
 				$post_types[] = 'page';
+				$post_types[] = 'product';
 				foreach ($cpts as $value) {
 					$post_types[] = $value;
 				}
-			} elseif ($settings['wpns_in_post'] == 'on' && $settings['wpns_in_page'] == 'on') {
-				$post_types[] = 'post';
-				$post_types[] = 'page';
-			} elseif ($settings['wpns_in_post'] == 'on' && $settings['wpns_in_cpt'] == 'on') {
-				$post_types = 'post';
-				foreach ($cpts as $value) {
-					$post_types[] = $value;
+			} else {
+				if ($settings['wpns_in_post'] == 'on') {
+					$post_types[] = 'post';
 				}
-			} elseif ($settings['wpns_in_page'] == 'on' && $settings['wpns_in_cpt'] == 'on') {
-				$post_types[] = 'page';
-				foreach ($cpts as $value) {
-					$post_types[] = $value;
+				if ($settings['wpns_in_page'] == 'on') {
+					$post_types[] = 'page';
 				}
-			} elseif ($settings['wpns_in_post'] == 'on') {
-				$post_types[] = 'post';
-			} elseif ($settings['wpns_in_page'] == 'on') {
-				$post_types[] = 'page';
-			} elseif ($settings['wpns_in_cpt'] == 'on') {
-				foreach ($cpts as $value) {
-					$post_types[] = $value;
+				if ($settings['wpns_in_cpt'] == 'on') {
+					foreach ($cpts as $value) {
+						$post_types[] = $value;
+					}
+				}
+				if ($settings['wpns_in_woo'] == 'on') {
+					$post_types[] = 'product';
 				}
 			}
 		}
@@ -216,7 +211,7 @@ abstract class Results
 	 * abstract method. This method must be declared in sub class
 	 */
 	abstract public function createList();
-	
+
 	/**
 	 * markup wrap results list
 	 * @return array $wrap_default

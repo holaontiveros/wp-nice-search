@@ -45,6 +45,7 @@ function wpnsCheckActivate()
 		'wpns_in_post' => 'on',
 		'wpns_in_page' => null,
 		'wpns_in_custom_post_type' => null,
+    'wpns_in_woo' => null,
 		//layout
 		'wpns_items_featured' => null,
 		'wpns_items_meta' => null,
